@@ -1,0 +1,870 @@
+
+GccApplication1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000004ac  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  000004ac  00000540  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  00800064  00800064  00000544  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000544  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000574  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000058  00000000  00000000  000005b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000007c8  00000000  00000000  00000608  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000641  00000000  00000000  00000dd0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000545  00000000  00000000  00001411  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000108  00000000  00000000  00001958  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000391  00000000  00000000  00001a60  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000073a  00000000  00000000  00001df1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000048  00000000  00000000  0000252b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	6d c0       	rjmp	.+218    	; 0xdc <__ctors_end>
+   2:	87 c0       	rjmp	.+270    	; 0x112 <__bad_interrupt>
+   4:	86 c0       	rjmp	.+268    	; 0x112 <__bad_interrupt>
+   6:	85 c0       	rjmp	.+266    	; 0x112 <__bad_interrupt>
+   8:	84 c0       	rjmp	.+264    	; 0x112 <__bad_interrupt>
+   a:	83 c0       	rjmp	.+262    	; 0x112 <__bad_interrupt>
+   c:	3d c1       	rjmp	.+634    	; 0x288 <__vector_6>
+   e:	81 c0       	rjmp	.+258    	; 0x112 <__bad_interrupt>
+  10:	80 c0       	rjmp	.+256    	; 0x112 <__bad_interrupt>
+  12:	7f c0       	rjmp	.+254    	; 0x112 <__bad_interrupt>
+  14:	7e c0       	rjmp	.+252    	; 0x112 <__bad_interrupt>
+  16:	7d c0       	rjmp	.+250    	; 0x112 <__bad_interrupt>
+  18:	7c c0       	rjmp	.+248    	; 0x112 <__bad_interrupt>
+  1a:	7b c0       	rjmp	.+246    	; 0x112 <__bad_interrupt>
+  1c:	7a c0       	rjmp	.+244    	; 0x112 <__bad_interrupt>
+  1e:	79 c0       	rjmp	.+242    	; 0x112 <__bad_interrupt>
+  20:	78 c0       	rjmp	.+240    	; 0x112 <__bad_interrupt>
+  22:	77 c0       	rjmp	.+238    	; 0x112 <__bad_interrupt>
+  24:	76 c0       	rjmp	.+236    	; 0x112 <__bad_interrupt>
+  26:	80 c0       	rjmp	.+256    	; 0x128 <segchar+0x14>
+  28:	f1 c0       	rjmp	.+482    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  2a:	f0 c0       	rjmp	.+480    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  2c:	ef c0       	rjmp	.+478    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  2e:	ee c0       	rjmp	.+476    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  30:	ed c0       	rjmp	.+474    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  32:	ec c0       	rjmp	.+472    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  34:	eb c0       	rjmp	.+470    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  36:	ea c0       	rjmp	.+468    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  38:	e9 c0       	rjmp	.+466    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  3a:	e8 c0       	rjmp	.+464    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  3c:	e7 c0       	rjmp	.+462    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  3e:	e6 c0       	rjmp	.+460    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  40:	e2 c0       	rjmp	.+452    	; 0x206 <__EEPROM_REGION_LENGTH__+0x6>
+  42:	e4 c0       	rjmp	.+456    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  44:	e3 c0       	rjmp	.+454    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  46:	73 c0       	rjmp	.+230    	; 0x12e <segchar+0x1a>
+  48:	75 c0       	rjmp	.+234    	; 0x134 <segchar+0x20>
+  4a:	77 c0       	rjmp	.+238    	; 0x13a <segchar+0x26>
+  4c:	79 c0       	rjmp	.+242    	; 0x140 <segchar+0x2c>
+  4e:	7b c0       	rjmp	.+246    	; 0x146 <segchar+0x32>
+  50:	7d c0       	rjmp	.+250    	; 0x14c <segchar+0x38>
+  52:	7f c0       	rjmp	.+254    	; 0x152 <segchar+0x3e>
+  54:	81 c0       	rjmp	.+258    	; 0x158 <segchar+0x44>
+  56:	83 c0       	rjmp	.+262    	; 0x15e <segchar+0x4a>
+  58:	85 c0       	rjmp	.+266    	; 0x164 <segchar+0x50>
+  5a:	d8 c0       	rjmp	.+432    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  5c:	d7 c0       	rjmp	.+430    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  5e:	d6 c0       	rjmp	.+428    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  60:	d5 c0       	rjmp	.+426    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  62:	d4 c0       	rjmp	.+424    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  64:	d3 c0       	rjmp	.+422    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  66:	d2 c0       	rjmp	.+420    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  68:	80 c0       	rjmp	.+256    	; 0x16a <segchar+0x56>
+  6a:	d0 c0       	rjmp	.+416    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  6c:	84 c0       	rjmp	.+264    	; 0x176 <segchar+0x62>
+  6e:	ce c0       	rjmp	.+412    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  70:	88 c0       	rjmp	.+272    	; 0x182 <segchar+0x6e>
+  72:	8a c0       	rjmp	.+276    	; 0x188 <segchar+0x74>
+  74:	8c c0       	rjmp	.+280    	; 0x18e <segchar+0x7a>
+  76:	8e c0       	rjmp	.+284    	; 0x194 <segchar+0x80>
+  78:	c9 c0       	rjmp	.+402    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  7a:	c8 c0       	rjmp	.+400    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  7c:	c7 c0       	rjmp	.+398    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  7e:	96 c0       	rjmp	.+300    	; 0x1ac <segchar+0x98>
+  80:	c5 c0       	rjmp	.+394    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  82:	c4 c0       	rjmp	.+392    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  84:	c3 c0       	rjmp	.+390    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  86:	9e c0       	rjmp	.+316    	; 0x1c4 <segchar+0xb0>
+  88:	c1 c0       	rjmp	.+386    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  8a:	c0 c0       	rjmp	.+384    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  8c:	bf c0       	rjmp	.+382    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  8e:	be c0       	rjmp	.+380    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  90:	a8 c0       	rjmp	.+336    	; 0x1e2 <segchar+0xce>
+  92:	bc c0       	rjmp	.+376    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  94:	bb c0       	rjmp	.+374    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  96:	ba c0       	rjmp	.+372    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  98:	b9 c0       	rjmp	.+370    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  9a:	b8 c0       	rjmp	.+368    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  9c:	b7 c0       	rjmp	.+366    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  9e:	b6 c0       	rjmp	.+364    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  a0:	b5 c0       	rjmp	.+362    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  a2:	b4 c0       	rjmp	.+360    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  a4:	b3 c0       	rjmp	.+358    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  a6:	b2 c0       	rjmp	.+356    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  a8:	b1 c0       	rjmp	.+354    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  aa:	62 c0       	rjmp	.+196    	; 0x170 <segchar+0x5c>
+  ac:	af c0       	rjmp	.+350    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  ae:	66 c0       	rjmp	.+204    	; 0x17c <segchar+0x68>
+  b0:	ad c0       	rjmp	.+346    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  b2:	ac c0       	rjmp	.+344    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  b4:	8a c0       	rjmp	.+276    	; 0x1ca <segchar+0xb6>
+  b6:	aa c0       	rjmp	.+340    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  b8:	70 c0       	rjmp	.+224    	; 0x19a <segchar+0x86>
+  ba:	72 c0       	rjmp	.+228    	; 0x1a0 <segchar+0x8c>
+  bc:	74 c0       	rjmp	.+232    	; 0x1a6 <segchar+0x92>
+  be:	a6 c0       	rjmp	.+332    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  c0:	78 c0       	rjmp	.+240    	; 0x1b2 <segchar+0x9e>
+  c2:	7a c0       	rjmp	.+244    	; 0x1b8 <segchar+0xa4>
+  c4:	7c c0       	rjmp	.+248    	; 0x1be <segchar+0xaa>
+  c6:	a2 c0       	rjmp	.+324    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  c8:	a1 c0       	rjmp	.+322    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  ca:	82 c0       	rjmp	.+260    	; 0x1d0 <segchar+0xbc>
+  cc:	84 c0       	rjmp	.+264    	; 0x1d6 <segchar+0xc2>
+  ce:	86 c0       	rjmp	.+268    	; 0x1dc <segchar+0xc8>
+  d0:	9d c0       	rjmp	.+314    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+  d2:	8a c0       	rjmp	.+276    	; 0x1e8 <segchar+0xd4>
+  d4:	8c c0       	rjmp	.+280    	; 0x1ee <segchar+0xda>
+  d6:	8e c0       	rjmp	.+284    	; 0x1f4 <segchar+0xe0>
+  d8:	90 c0       	rjmp	.+288    	; 0x1fa <segchar+0xe6>
+  da:	92 c0       	rjmp	.+292    	; 0x200 <__EEPROM_REGION_LENGTH__>
+
+000000dc <__ctors_end>:
+  dc:	11 24       	eor	r1, r1
+  de:	1f be       	out	0x3f, r1	; 63
+  e0:	cf e5       	ldi	r28, 0x5F	; 95
+  e2:	d4 e0       	ldi	r29, 0x04	; 4
+  e4:	de bf       	out	0x3e, r29	; 62
+  e6:	cd bf       	out	0x3d, r28	; 61
+
+000000e8 <__do_copy_data>:
+  e8:	10 e0       	ldi	r17, 0x00	; 0
+  ea:	a0 e6       	ldi	r26, 0x60	; 96
+  ec:	b0 e0       	ldi	r27, 0x00	; 0
+  ee:	ec ea       	ldi	r30, 0xAC	; 172
+  f0:	f4 e0       	ldi	r31, 0x04	; 4
+  f2:	02 c0       	rjmp	.+4      	; 0xf8 <__do_copy_data+0x10>
+  f4:	05 90       	lpm	r0, Z+
+  f6:	0d 92       	st	X+, r0
+  f8:	a4 36       	cpi	r26, 0x64	; 100
+  fa:	b1 07       	cpc	r27, r17
+  fc:	d9 f7       	brne	.-10     	; 0xf4 <__do_copy_data+0xc>
+
+000000fe <__do_clear_bss>:
+  fe:	20 e0       	ldi	r18, 0x00	; 0
+ 100:	a4 e6       	ldi	r26, 0x64	; 100
+ 102:	b0 e0       	ldi	r27, 0x00	; 0
+ 104:	01 c0       	rjmp	.+2      	; 0x108 <.do_clear_bss_start>
+
+00000106 <.do_clear_bss_loop>:
+ 106:	1d 92       	st	X+, r1
+
+00000108 <.do_clear_bss_start>:
+ 108:	a8 36       	cpi	r26, 0x68	; 104
+ 10a:	b2 07       	cpc	r27, r18
+ 10c:	e1 f7       	brne	.-8      	; 0x106 <.do_clear_bss_loop>
+ 10e:	71 d1       	rcall	.+738    	; 0x3f2 <main>
+ 110:	cb c1       	rjmp	.+918    	; 0x4a8 <_exit>
+
+00000112 <__bad_interrupt>:
+ 112:	76 cf       	rjmp	.-276    	; 0x0 <__vectors>
+
+00000114 <segchar>:
+unsigned char n_count=0;
+
+// Учим зажигать цифры и буквы
+void segchar(unsigned char ch)
+{
+	switch (ch)
+ 114:	90 e0       	ldi	r25, 0x00	; 0
+ 116:	fc 01       	movw	r30, r24
+ 118:	b0 97       	sbiw	r30, 0x20	; 32
+ 11a:	eb 35       	cpi	r30, 0x5B	; 91
+ 11c:	f1 05       	cpc	r31, r1
+ 11e:	08 f0       	brcs	.+2      	; 0x122 <segchar+0xe>
+ 120:	75 c0       	rjmp	.+234    	; 0x20c <__EEPROM_REGION_LENGTH__+0xc>
+ 122:	ed 5e       	subi	r30, 0xED	; 237
+ 124:	ff 4f       	sbci	r31, 0xFF	; 255
+ 126:	09 94       	ijmp
+	{
+		case ' ':  PORTB = 0b11111111; break;
+ 128:	8f ef       	ldi	r24, 0xFF	; 255
+ 12a:	88 bb       	out	0x18, r24	; 24
+ 12c:	08 95       	ret
+		case '0':  PORTB = 0b00101000; break;
+ 12e:	88 e2       	ldi	r24, 0x28	; 40
+ 130:	88 bb       	out	0x18, r24	; 24
+ 132:	08 95       	ret
+		case '1':  PORTB = 0b10101111; break;
+ 134:	8f ea       	ldi	r24, 0xAF	; 175
+ 136:	88 bb       	out	0x18, r24	; 24
+ 138:	08 95       	ret
+		case '2':  PORTB = 0b10011000; break;
+ 13a:	88 e9       	ldi	r24, 0x98	; 152
+ 13c:	88 bb       	out	0x18, r24	; 24
+ 13e:	08 95       	ret
+		case '3':  PORTB = 0b10001010; break;
+ 140:	8a e8       	ldi	r24, 0x8A	; 138
+ 142:	88 bb       	out	0x18, r24	; 24
+ 144:	08 95       	ret
+		case '4':  PORTB = 0b00001111; break;
+ 146:	8f e0       	ldi	r24, 0x0F	; 15
+ 148:	88 bb       	out	0x18, r24	; 24
+ 14a:	08 95       	ret
+		case '5':  PORTB = 0b01001010; break;
+ 14c:	8a e4       	ldi	r24, 0x4A	; 74
+ 14e:	88 bb       	out	0x18, r24	; 24
+ 150:	08 95       	ret
+		case '6':  PORTB = 0b01001000; break;
+ 152:	88 e4       	ldi	r24, 0x48	; 72
+ 154:	88 bb       	out	0x18, r24	; 24
+ 156:	08 95       	ret
+		case '7':  PORTB = 0b10101110; break;
+ 158:	8e ea       	ldi	r24, 0xAE	; 174
+ 15a:	88 bb       	out	0x18, r24	; 24
+ 15c:	08 95       	ret
+		case '8':  PORTB = 0b00001000; break;
+ 15e:	88 e0       	ldi	r24, 0x08	; 8
+ 160:	88 bb       	out	0x18, r24	; 24
+ 162:	08 95       	ret
+		case '9':  PORTB = 0b00001010; break;
+ 164:	8a e0       	ldi	r24, 0x0A	; 10
+ 166:	88 bb       	out	0x18, r24	; 24
+ 168:	08 95       	ret
+		
+		case 'A':  PORTB = 	0b00001100; break;
+ 16a:	8c e0       	ldi	r24, 0x0C	; 12
+ 16c:	88 bb       	out	0x18, r24	; 24
+ 16e:	08 95       	ret
+		case 'b':  PORTB = 	0b01001001; break;
+ 170:	89 e4       	ldi	r24, 0x49	; 73
+ 172:	88 bb       	out	0x18, r24	; 24
+ 174:	08 95       	ret
+		case 'C':  PORTB = 	0b01111000; break;
+ 176:	88 e7       	ldi	r24, 0x78	; 120
+ 178:	88 bb       	out	0x18, r24	; 24
+ 17a:	08 95       	ret
+		case 'd':  PORTB = 	0b10001001; break;
+ 17c:	89 e8       	ldi	r24, 0x89	; 137
+ 17e:	88 bb       	out	0x18, r24	; 24
+ 180:	08 95       	ret
+		case 'E':  PORTB = 	0b01011000; break;
+ 182:	88 e5       	ldi	r24, 0x58	; 88
+ 184:	88 bb       	out	0x18, r24	; 24
+ 186:	08 95       	ret
+		case 'F':  PORTB = 	0b01011100; break;
+ 188:	8c e5       	ldi	r24, 0x5C	; 92
+ 18a:	88 bb       	out	0x18, r24	; 24
+ 18c:	08 95       	ret
+		case 'G':  PORTB = 	0b01101000; break;
+ 18e:	88 e6       	ldi	r24, 0x68	; 104
+ 190:	88 bb       	out	0x18, r24	; 24
+ 192:	08 95       	ret
+		case 'H':  PORTB = 	0b00001101; break;
+ 194:	8d e0       	ldi	r24, 0x0D	; 13
+ 196:	88 bb       	out	0x18, r24	; 24
+ 198:	08 95       	ret
+		case 'i':  PORTB = 	0b11111000; break;
+ 19a:	88 ef       	ldi	r24, 0xF8	; 248
+ 19c:	88 bb       	out	0x18, r24	; 24
+ 19e:	08 95       	ret
+		case 'j':  PORTB = 	0b11101010; break;
+ 1a0:	8a ee       	ldi	r24, 0xEA	; 234
+ 1a2:	88 bb       	out	0x18, r24	; 24
+ 1a4:	08 95       	ret
+		case 'k':  PORTB = 	0b00011101; break;
+ 1a6:	8d e1       	ldi	r24, 0x1D	; 29
+ 1a8:	88 bb       	out	0x18, r24	; 24
+ 1aa:	08 95       	ret
+		case 'L':  PORTB = 	0b01111001; break;
+ 1ac:	89 e7       	ldi	r24, 0x79	; 121
+ 1ae:	88 bb       	out	0x18, r24	; 24
+ 1b0:	08 95       	ret
+		case 'm':  PORTB = 	0b11001100; break;
+ 1b2:	8c ec       	ldi	r24, 0xCC	; 204
+ 1b4:	88 bb       	out	0x18, r24	; 24
+ 1b6:	08 95       	ret
+		case 'n':  PORTB = 	0b11001101; break;
+ 1b8:	8d ec       	ldi	r24, 0xCD	; 205
+ 1ba:	88 bb       	out	0x18, r24	; 24
+ 1bc:	08 95       	ret
+		case 'o':  PORTB = 	0b11001000; break;
+ 1be:	88 ec       	ldi	r24, 0xC8	; 200
+ 1c0:	88 bb       	out	0x18, r24	; 24
+ 1c2:	08 95       	ret
+		case 'P':  PORTB = 	0b00011100; break;
+ 1c4:	8c e1       	ldi	r24, 0x1C	; 28
+ 1c6:	88 bb       	out	0x18, r24	; 24
+ 1c8:	08 95       	ret
+		case 'g':  PORTB = 	0b00001110; break;
+ 1ca:	8e e0       	ldi	r24, 0x0E	; 14
+ 1cc:	88 bb       	out	0x18, r24	; 24
+ 1ce:	08 95       	ret
+		case 'r':  PORTB = 	0b11011101; break;
+ 1d0:	8d ed       	ldi	r24, 0xDD	; 221
+ 1d2:	88 bb       	out	0x18, r24	; 24
+ 1d4:	08 95       	ret
+		case 's':  PORTB = 	0b01001010; break;
+ 1d6:	8a e4       	ldi	r24, 0x4A	; 74
+ 1d8:	88 bb       	out	0x18, r24	; 24
+ 1da:	08 95       	ret
+		case 't':  PORTB = 	0b01011001; break;
+ 1dc:	89 e5       	ldi	r24, 0x59	; 89
+ 1de:	88 bb       	out	0x18, r24	; 24
+ 1e0:	08 95       	ret
+		case 'U':  PORTB = 	0b00101001; break;
+ 1e2:	89 e2       	ldi	r24, 0x29	; 41
+ 1e4:	88 bb       	out	0x18, r24	; 24
+ 1e6:	08 95       	ret
+		case 'v':  PORTB = 	0b11101000; break;
+ 1e8:	88 ee       	ldi	r24, 0xE8	; 232
+ 1ea:	88 bb       	out	0x18, r24	; 24
+ 1ec:	08 95       	ret
+		case 'w':  PORTB = 	0b00011011; break;
+ 1ee:	8b e1       	ldi	r24, 0x1B	; 27
+ 1f0:	88 bb       	out	0x18, r24	; 24
+ 1f2:	08 95       	ret
+		case 'x':  PORTB = 	0b11101101; break;
+ 1f4:	8d ee       	ldi	r24, 0xED	; 237
+ 1f6:	88 bb       	out	0x18, r24	; 24
+ 1f8:	08 95       	ret
+		case 'y':  PORTB = 	0b00001011; break;
+ 1fa:	8b e0       	ldi	r24, 0x0B	; 11
+ 1fc:	88 bb       	out	0x18, r24	; 24
+ 1fe:	08 95       	ret
+		case 'z':  PORTB = 	0b11011010; break;
+ 200:	8a ed       	ldi	r24, 0xDA	; 218
+ 202:	88 bb       	out	0x18, r24	; 24
+ 204:	08 95       	ret
+		
+		case '-':  PORTB =  0b11011111; break;
+ 206:	8f ed       	ldi	r24, 0xDF	; 223
+ 208:	88 bb       	out	0x18, r24	; 24
+ 20a:	08 95       	ret
+		default:   PORTB =  0b11111111; break; // Для остальных значений отключаем
+ 20c:	8f ef       	ldi	r24, 0xFF	; 255
+ 20e:	88 bb       	out	0x18, r24	; 24
+ 210:	08 95       	ret
+
+00000212 <turnoffall>:
+}
+
+// Выключить все
+void turnoffall(void)
+{
+	DDRC  &= ~0b00001111; /* Аноды цифр по умолчанию на вход. Отключаем ток */
+ 212:	84 b3       	in	r24, 0x14	; 20
+ 214:	80 7f       	andi	r24, 0xF0	; 240
+ 216:	84 bb       	out	0x14, r24	; 20
+	PORTC &= ~0b00001111; /* Значени по умолчанию. Убираем остатки тока через подтяжку, если она есть */
+ 218:	85 b3       	in	r24, 0x15	; 21
+ 21a:	80 7f       	andi	r24, 0xF0	; 240
+ 21c:	85 bb       	out	0x15, r24	; 21
+	
+	PORTB = 0b11111111; /* Тушим свет для катодов */
+ 21e:	8f ef       	ldi	r24, 0xFF	; 255
+ 220:	88 bb       	out	0x18, r24	; 24
+	DDRB  = 0b11111111; /* Инициировать настройки портов. Стоит дешевле, чем приносит пользы */
+ 222:	87 bb       	out	0x17, r24	; 23
+ 224:	08 95       	ret
+
+00000226 <turnon>:
+}
+
+// Включаем требуемый разряд
+void turnon(unsigned char seg)
+{
+	switch (seg)
+ 226:	81 30       	cpi	r24, 0x01	; 1
+ 228:	69 f0       	breq	.+26     	; 0x244 <turnon+0x1e>
+ 22a:	28 f0       	brcs	.+10     	; 0x236 <turnon+0x10>
+ 22c:	82 30       	cpi	r24, 0x02	; 2
+ 22e:	89 f0       	breq	.+34     	; 0x252 <turnon+0x2c>
+ 230:	83 30       	cpi	r24, 0x03	; 3
+ 232:	b1 f0       	breq	.+44     	; 0x260 <turnon+0x3a>
+ 234:	08 95       	ret
+	{
+		case 0:
+		PORTC |= (1 << PORTC1); // Уровень 1
+ 236:	85 b3       	in	r24, 0x15	; 21
+ 238:	82 60       	ori	r24, 0x02	; 2
+ 23a:	85 bb       	out	0x15, r24	; 21
+		DDRC  |= (1 << PORTC1); // Выход
+ 23c:	84 b3       	in	r24, 0x14	; 20
+ 23e:	82 60       	ori	r24, 0x02	; 2
+ 240:	84 bb       	out	0x14, r24	; 20
+		break;
+ 242:	08 95       	ret
+		
+		case 1:
+		PORTC |= (1 << PORTC2); // Уровень 1
+ 244:	85 b3       	in	r24, 0x15	; 21
+ 246:	84 60       	ori	r24, 0x04	; 4
+ 248:	85 bb       	out	0x15, r24	; 21
+		DDRC  |= (1 << PORTC2); // Выход
+ 24a:	84 b3       	in	r24, 0x14	; 20
+ 24c:	84 60       	ori	r24, 0x04	; 4
+ 24e:	84 bb       	out	0x14, r24	; 20
+		break;
+ 250:	08 95       	ret
+		
+		case 2:
+		PORTC |= (1 << PORTC3); // Уровень 1
+ 252:	85 b3       	in	r24, 0x15	; 21
+ 254:	88 60       	ori	r24, 0x08	; 8
+ 256:	85 bb       	out	0x15, r24	; 21
+		DDRC  |= (1 << PORTC3); // Выход
+ 258:	84 b3       	in	r24, 0x14	; 20
+ 25a:	88 60       	ori	r24, 0x08	; 8
+ 25c:	84 bb       	out	0x14, r24	; 20
+		break;
+ 25e:	08 95       	ret
+		
+		case 3:
+		PORTC |= (1 << PORTC0); // Уровень 1
+ 260:	85 b3       	in	r24, 0x15	; 21
+ 262:	81 60       	ori	r24, 0x01	; 1
+ 264:	85 bb       	out	0x15, r24	; 21
+		DDRC  |= (1 << PORTC0); // Выход
+ 266:	84 b3       	in	r24, 0x14	; 20
+ 268:	81 60       	ori	r24, 0x01	; 1
+ 26a:	84 bb       	out	0x14, r24	; 20
+ 26c:	08 95       	ret
+
+0000026e <timer_ini>:
+}
+
+// Заводим таймер 
+void timer_ini(void)
+{
+	TCCR1B |= (1<<WGM12); // Устанавливаем режим СТС (сброс по совпадению)
+ 26e:	8e b5       	in	r24, 0x2e	; 46
+ 270:	88 60       	ori	r24, 0x08	; 8
+ 272:	8e bd       	out	0x2e, r24	; 46
+	TIMSK |= (1<<OCIE1A); // Устанавливаем бит разрешения прерывания 1ого счетчика по совпадению с OCR1A(H и L)
+ 274:	89 b7       	in	r24, 0x39	; 57
+ 276:	80 61       	ori	r24, 0x10	; 16
+ 278:	89 bf       	out	0x39, r24	; 57
+	OCR1AH = 0b00000000;  // Записываем в регистр число для сравнения
+ 27a:	1b bc       	out	0x2b, r1	; 43
+	OCR1AL = 0b01100100;
+ 27c:	84 e6       	ldi	r24, 0x64	; 100
+ 27e:	8a bd       	out	0x2a, r24	; 42
+	TCCR1B |= (1<<CS10);  // Установим делитель.
+ 280:	8e b5       	in	r24, 0x2e	; 46
+ 282:	81 60       	ori	r24, 0x01	; 1
+ 284:	8e bd       	out	0x2e, r24	; 46
+ 286:	08 95       	ret
+
+00000288 <__vector_6>:
+}
+
+// Действия при прерывание по таймеру
+ISR (TIMER1_COMPA_vect)
+{
+ 288:	1f 92       	push	r1
+ 28a:	0f 92       	push	r0
+ 28c:	0f b6       	in	r0, 0x3f	; 63
+ 28e:	0f 92       	push	r0
+ 290:	11 24       	eor	r1, r1
+ 292:	2f 93       	push	r18
+ 294:	3f 93       	push	r19
+ 296:	4f 93       	push	r20
+ 298:	5f 93       	push	r21
+ 29a:	6f 93       	push	r22
+ 29c:	7f 93       	push	r23
+ 29e:	8f 93       	push	r24
+ 2a0:	9f 93       	push	r25
+ 2a2:	af 93       	push	r26
+ 2a4:	bf 93       	push	r27
+ 2a6:	ef 93       	push	r30
+ 2a8:	ff 93       	push	r31
+	static unsigned char new_state=0;
+	static unsigned char old_state=0; 
+
+	new_state = (PINC & 0b00110000) >> 4;
+ 2aa:	83 b3       	in	r24, 0x13	; 19
+ 2ac:	80 73       	andi	r24, 0x30	; 48
+ 2ae:	90 e0       	ldi	r25, 0x00	; 0
+ 2b0:	95 95       	asr	r25
+ 2b2:	87 95       	ror	r24
+ 2b4:	95 95       	asr	r25
+ 2b6:	87 95       	ror	r24
+ 2b8:	95 95       	asr	r25
+ 2ba:	87 95       	ror	r24
+ 2bc:	95 95       	asr	r25
+ 2be:	87 95       	ror	r24
+	
+	// Если вдруг обнаружим низкое состояние (кнопка нажата), то обнулим счётчик
+	if(!(PIND & 0b00010000)) cnt = 0; 
+ 2c0:	84 99       	sbic	0x10, 4	; 16
+ 2c2:	04 c0       	rjmp	.+8      	; 0x2cc <__vector_6+0x44>
+ 2c4:	10 92 67 00 	sts	0x0067, r1	; 0x800067 <cnt+0x1>
+ 2c8:	10 92 66 00 	sts	0x0066, r1	; 0x800066 <cnt>
+	
+	switch(old_state | new_state)
+ 2cc:	20 91 64 00 	lds	r18, 0x0064	; 0x800064 <__data_end>
+ 2d0:	28 2b       	or	r18, r24
+ 2d2:	24 30       	cpi	r18, 0x04	; 4
+ 2d4:	99 f0       	breq	.+38     	; 0x2fc <__vector_6+0x74>
+ 2d6:	18 f4       	brcc	.+6      	; 0x2de <__vector_6+0x56>
+ 2d8:	21 30       	cpi	r18, 0x01	; 1
+ 2da:	29 f0       	breq	.+10     	; 0x2e6 <__vector_6+0x5e>
+ 2dc:	19 c0       	rjmp	.+50     	; 0x310 <__vector_6+0x88>
+ 2de:	2b 30       	cpi	r18, 0x0B	; 11
+ 2e0:	69 f0       	breq	.+26     	; 0x2fc <__vector_6+0x74>
+ 2e2:	2e 30       	cpi	r18, 0x0E	; 14
+ 2e4:	a9 f4       	brne	.+42     	; 0x310 <__vector_6+0x88>
+	{
+		case 0x01: case 0x0e:
+		cnt++;
+ 2e6:	20 91 66 00 	lds	r18, 0x0066	; 0x800066 <cnt>
+ 2ea:	30 91 67 00 	lds	r19, 0x0067	; 0x800067 <cnt+0x1>
+ 2ee:	2f 5f       	subi	r18, 0xFF	; 255
+ 2f0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2f2:	30 93 67 00 	sts	0x0067, r19	; 0x800067 <cnt+0x1>
+ 2f6:	20 93 66 00 	sts	0x0066, r18	; 0x800066 <cnt>
+		break;
+ 2fa:	0a c0       	rjmp	.+20     	; 0x310 <__vector_6+0x88>
+		case 0x04: case 0x0b: 
+		cnt--;
+ 2fc:	20 91 66 00 	lds	r18, 0x0066	; 0x800066 <cnt>
+ 300:	30 91 67 00 	lds	r19, 0x0067	; 0x800067 <cnt+0x1>
+ 304:	21 50       	subi	r18, 0x01	; 1
+ 306:	31 09       	sbc	r19, r1
+ 308:	30 93 67 00 	sts	0x0067, r19	; 0x800067 <cnt+0x1>
+ 30c:	20 93 66 00 	sts	0x0066, r18	; 0x800066 <cnt>
+		break;
+	}
+	old_state = new_state << 2;
+ 310:	88 0f       	add	r24, r24
+ 312:	88 0f       	add	r24, r24
+ 314:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <__data_end>
+	
+	// Выводим цифру на индикатор 
+	turnoffall();       // Отключаем все
+ 318:	7c df       	rcall	.-264    	; 0x212 <turnoffall>
+	segchar(R[n_count]);
+ 31a:	e0 91 65 00 	lds	r30, 0x0065	; 0x800065 <n_count>
+ 31e:	f0 e0       	ldi	r31, 0x00	; 0
+ 320:	e0 5a       	subi	r30, 0xA0	; 160
+ 322:	ff 4f       	sbci	r31, 0xFF	; 255
+ 324:	80 81       	ld	r24, Z
+ 326:	f6 de       	rcall	.-532    	; 0x114 <segchar>
+	turnon(n_count);    // Включаем ток 
+ 328:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <n_count>
+ 32c:	7c df       	rcall	.-264    	; 0x226 <turnon>
+	if (++n_count >= sizeof(R) / sizeof(R[0])) n_count = 0;
+ 32e:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <n_count>
+ 332:	8f 5f       	subi	r24, 0xFF	; 255
+ 334:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <n_count>
+ 338:	84 30       	cpi	r24, 0x04	; 4
+ 33a:	10 f0       	brcs	.+4      	; 0x340 <__vector_6+0xb8>
+ 33c:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <n_count>
+}
+ 340:	ff 91       	pop	r31
+ 342:	ef 91       	pop	r30
+ 344:	bf 91       	pop	r27
+ 346:	af 91       	pop	r26
+ 348:	9f 91       	pop	r25
+ 34a:	8f 91       	pop	r24
+ 34c:	7f 91       	pop	r23
+ 34e:	6f 91       	pop	r22
+ 350:	5f 91       	pop	r21
+ 352:	4f 91       	pop	r20
+ 354:	3f 91       	pop	r19
+ 356:	2f 91       	pop	r18
+ 358:	0f 90       	pop	r0
+ 35a:	0f be       	out	0x3f, r0	; 63
+ 35c:	0f 90       	pop	r0
+ 35e:	1f 90       	pop	r1
+ 360:	18 95       	reti
+
+00000362 <P>:
+
+//Меняем точку зрения (меняем очередность сегментов)
+uint8_t P (uint8_t x)
+{
+	return ((sizeof(R) / sizeof(R[0])) - 1) - x;
+}
+ 362:	93 e0       	ldi	r25, 0x03	; 3
+ 364:	98 1b       	sub	r25, r24
+ 366:	89 2f       	mov	r24, r25
+ 368:	08 95       	ret
+
+0000036a <ledprint>:
+
+// Присваиваем каждому сигменту своё число
+void ledprint(unsigned int number, unsigned char Rl[4])
+{
+ 36a:	ef 92       	push	r14
+ 36c:	ff 92       	push	r15
+ 36e:	0f 93       	push	r16
+ 370:	1f 93       	push	r17
+ 372:	cf 93       	push	r28
+ 374:	7c 01       	movw	r14, r24
+ 376:	8b 01       	movw	r16, r22
+	for (uint8_t i = 0; i < sizeof(R) / sizeof(R[0]); i++)
+ 378:	c0 e0       	ldi	r28, 0x00	; 0
+ 37a:	33 c0       	rjmp	.+102    	; 0x3e2 <ledprint+0x78>
+	{
+		// Rl[P(i)] возвращяем удобное для нас значения 
+		Rl[P(i)] = '0' + number % 10;  
+ 37c:	8c 2f       	mov	r24, r28
+ 37e:	f1 df       	rcall	.-30     	; 0x362 <P>
+ 380:	f8 01       	movw	r30, r16
+ 382:	e8 0f       	add	r30, r24
+ 384:	f1 1d       	adc	r31, r1
+ 386:	97 01       	movw	r18, r14
+ 388:	ad ec       	ldi	r26, 0xCD	; 205
+ 38a:	bc ec       	ldi	r27, 0xCC	; 204
+ 38c:	81 d0       	rcall	.+258    	; 0x490 <__umulhisi3>
+ 38e:	96 95       	lsr	r25
+ 390:	87 95       	ror	r24
+ 392:	96 95       	lsr	r25
+ 394:	87 95       	ror	r24
+ 396:	96 95       	lsr	r25
+ 398:	87 95       	ror	r24
+ 39a:	9c 01       	movw	r18, r24
+ 39c:	22 0f       	add	r18, r18
+ 39e:	33 1f       	adc	r19, r19
+ 3a0:	88 0f       	add	r24, r24
+ 3a2:	99 1f       	adc	r25, r25
+ 3a4:	88 0f       	add	r24, r24
+ 3a6:	99 1f       	adc	r25, r25
+ 3a8:	88 0f       	add	r24, r24
+ 3aa:	99 1f       	adc	r25, r25
+ 3ac:	82 0f       	add	r24, r18
+ 3ae:	93 1f       	adc	r25, r19
+ 3b0:	97 01       	movw	r18, r14
+ 3b2:	28 1b       	sub	r18, r24
+ 3b4:	39 0b       	sbc	r19, r25
+ 3b6:	c9 01       	movw	r24, r18
+ 3b8:	80 5d       	subi	r24, 0xD0	; 208
+ 3ba:	80 83       	st	Z, r24
+		if(i && !number) Rl[P(i)] = ' ';
+ 3bc:	cc 23       	and	r28, r28
+ 3be:	29 f0       	breq	.+10     	; 0x3ca <ledprint+0x60>
+ 3c0:	e1 14       	cp	r14, r1
+ 3c2:	f1 04       	cpc	r15, r1
+ 3c4:	11 f4       	brne	.+4      	; 0x3ca <ledprint+0x60>
+ 3c6:	80 e2       	ldi	r24, 0x20	; 32
+ 3c8:	80 83       	st	Z, r24
+		number /= 10;
+ 3ca:	97 01       	movw	r18, r14
+ 3cc:	ad ec       	ldi	r26, 0xCD	; 205
+ 3ce:	bc ec       	ldi	r27, 0xCC	; 204
+ 3d0:	5f d0       	rcall	.+190    	; 0x490 <__umulhisi3>
+ 3d2:	7c 01       	movw	r14, r24
+ 3d4:	f6 94       	lsr	r15
+ 3d6:	e7 94       	ror	r14
+ 3d8:	f6 94       	lsr	r15
+ 3da:	e7 94       	ror	r14
+ 3dc:	f6 94       	lsr	r15
+ 3de:	e7 94       	ror	r14
+}
+
+// Присваиваем каждому сигменту своё число
+void ledprint(unsigned int number, unsigned char Rl[4])
+{
+	for (uint8_t i = 0; i < sizeof(R) / sizeof(R[0]); i++)
+ 3e0:	cf 5f       	subi	r28, 0xFF	; 255
+ 3e2:	c4 30       	cpi	r28, 0x04	; 4
+ 3e4:	58 f2       	brcs	.-106    	; 0x37c <ledprint+0x12>
+		// Rl[P(i)] возвращяем удобное для нас значения 
+		Rl[P(i)] = '0' + number % 10;  
+		if(i && !number) Rl[P(i)] = ' ';
+		number /= 10;
+	}
+}
+ 3e6:	cf 91       	pop	r28
+ 3e8:	1f 91       	pop	r17
+ 3ea:	0f 91       	pop	r16
+ 3ec:	ff 90       	pop	r15
+ 3ee:	ef 90       	pop	r14
+ 3f0:	08 95       	ret
+
+000003f2 <main>:
+
+// Начинаем начинать 
+int main(void)
+{
+ 3f2:	cf 93       	push	r28
+ 3f4:	df 93       	push	r29
+ 3f6:	00 d0       	rcall	.+0      	; 0x3f8 <main+0x6>
+ 3f8:	00 d0       	rcall	.+0      	; 0x3fa <main+0x8>
+ 3fa:	cd b7       	in	r28, 0x3d	; 61
+ 3fc:	de b7       	in	r29, 0x3e	; 62
+	unsigned char Rx[4];  // Обьявим локальный массив для разрядов 
+	short cnt_local = 0;  // Для сохранения подсчета внутри критической секции
+	bool update;          // Флаг перерисовки дисплея
+	DDRC  &= ~0b00110000; // Вход энкодера и кнопки
+ 3fe:	84 b3       	in	r24, 0x14	; 20
+ 400:	8f 7c       	andi	r24, 0xCF	; 207
+ 402:	84 bb       	out	0x14, r24	; 20
+	PORTC |=  0b00110000; // Поддтяжка
+ 404:	85 b3       	in	r24, 0x15	; 21
+ 406:	80 63       	ori	r24, 0x30	; 48
+ 408:	85 bb       	out	0x15, r24	; 21
+	DDRD  &= ~0b00010000; // Единица для кнопки
+ 40a:	81 b3       	in	r24, 0x11	; 17
+ 40c:	8f 7e       	andi	r24, 0xEF	; 239
+ 40e:	81 bb       	out	0x11, r24	; 17
+	PORTD |=  0b00010000; // Единица для кнопки
+ 410:	82 b3       	in	r24, 0x12	; 18
+ 412:	80 61       	ori	r24, 0x10	; 16
+ 414:	82 bb       	out	0x12, r24	; 18
+	//--------------------------------------------
+	timer_ini();
+ 416:	2b df       	rcall	.-426    	; 0x26e <timer_ini>
+	turnoffall();
+ 418:	fc de       	rcall	.-520    	; 0x212 <turnoffall>
+	//--------------------------------------------
+	sei();                // Разрешаем прерывания. Это важно!
+ 41a:	78 94       	sei
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 41c:	83 ec       	ldi	r24, 0xC3	; 195
+ 41e:	99 e0       	ldi	r25, 0x09	; 9
+ 420:	01 97       	sbiw	r24, 0x01	; 1
+ 422:	f1 f7       	brne	.-4      	; 0x420 <__DATA_REGION_LENGTH__+0x20>
+ 424:	00 c0       	rjmp	.+0      	; 0x426 <__DATA_REGION_LENGTH__+0x26>
+ 426:	00 00       	nop
+	_delay_ms(10);        // Задержка на вывод заставки
+	update = true;        // Принудительно обновим дисплей в первый раз
+ 428:	81 e0       	ldi	r24, 0x01	; 1
+
+// Начинаем начинать 
+int main(void)
+{
+	unsigned char Rx[4];  // Обьявим локальный массив для разрядов 
+	short cnt_local = 0;  // Для сохранения подсчета внутри критической секции
+ 42a:	00 e0       	ldi	r16, 0x00	; 0
+ 42c:	10 e0       	ldi	r17, 0x00	; 0
+	_delay_ms(10);        // Задержка на вывод заставки
+	update = true;        // Принудительно обновим дисплей в первый раз
+	//--------------------------------------------	
+	while(1)
+	{
+		cli();                // Открываем критическую секцию 
+ 42e:	f8 94       	cli
+		if (cnt_local != cnt) // Если счетчик изменился?
+ 430:	20 91 66 00 	lds	r18, 0x0066	; 0x800066 <cnt>
+ 434:	30 91 67 00 	lds	r19, 0x0067	; 0x800067 <cnt+0x1>
+ 438:	02 17       	cp	r16, r18
+ 43a:	13 07       	cpc	r17, r19
+ 43c:	29 f0       	breq	.+10     	; 0x448 <__DATA_REGION_LENGTH__+0x48>
+		{
+			cnt_local = cnt;  // Обновляем Локальную копию счетчика
+ 43e:	00 91 66 00 	lds	r16, 0x0066	; 0x800066 <cnt>
+ 442:	10 91 67 00 	lds	r17, 0x0067	; 0x800067 <cnt+0x1>
+			update = true;    // Устанавливаем флаг перерисовки дисплея
+ 446:	81 e0       	ldi	r24, 0x01	; 1
+		}
+		sei();                // Закрываем критическую секцию
+ 448:	78 94       	sei
+		
+		//--------------------------------------------
+		if (update)           // Флаг установлен?
+ 44a:	88 23       	and	r24, r24
+ 44c:	81 f3       	breq	.-32     	; 0x42e <__DATA_REGION_LENGTH__+0x2e>
+			/*
+			Пересчитывам буфер.
+			Вот здесь из отрицательного числа делаем положительное 
+			что бы не зависть от направления вращения энкодера после включения
+			*/
+			ledprint(cnt_local >= 0 ? cnt_local : -cnt_local, Rx);
+ 44e:	c8 01       	movw	r24, r16
+ 450:	11 23       	and	r17, r17
+ 452:	24 f4       	brge	.+8      	; 0x45c <__DATA_REGION_LENGTH__+0x5c>
+ 454:	88 27       	eor	r24, r24
+ 456:	99 27       	eor	r25, r25
+ 458:	80 1b       	sub	r24, r16
+ 45a:	91 0b       	sbc	r25, r17
+ 45c:	be 01       	movw	r22, r28
+ 45e:	6f 5f       	subi	r22, 0xFF	; 255
+ 460:	7f 4f       	sbci	r23, 0xFF	; 255
+ 462:	83 df       	rcall	.-250    	; 0x36a <ledprint>
+			
+			//--------------------------------------------
+			cli();            // Открываем критическую секцию 
+ 464:	f8 94       	cli
+			for (int w = 0; w < sizeof(R) / sizeof(R[0]);  w++)
+ 466:	80 e0       	ldi	r24, 0x00	; 0
+ 468:	90 e0       	ldi	r25, 0x00	; 0
+ 46a:	0c c0       	rjmp	.+24     	; 0x484 <__stack+0x25>
+			{
+				R[w] = Rx[w]; // Обновляем Локальную копию массива регистров 
+ 46c:	e1 e0       	ldi	r30, 0x01	; 1
+ 46e:	f0 e0       	ldi	r31, 0x00	; 0
+ 470:	ec 0f       	add	r30, r28
+ 472:	fd 1f       	adc	r31, r29
+ 474:	e8 0f       	add	r30, r24
+ 476:	f9 1f       	adc	r31, r25
+ 478:	20 81       	ld	r18, Z
+ 47a:	fc 01       	movw	r30, r24
+ 47c:	e0 5a       	subi	r30, 0xA0	; 160
+ 47e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 480:	20 83       	st	Z, r18
+			*/
+			ledprint(cnt_local >= 0 ? cnt_local : -cnt_local, Rx);
+			
+			//--------------------------------------------
+			cli();            // Открываем критическую секцию 
+			for (int w = 0; w < sizeof(R) / sizeof(R[0]);  w++)
+ 482:	01 96       	adiw	r24, 0x01	; 1
+ 484:	84 30       	cpi	r24, 0x04	; 4
+ 486:	91 05       	cpc	r25, r1
+ 488:	88 f3       	brcs	.-30     	; 0x46c <__stack+0xd>
+			{
+				R[w] = Rx[w]; // Обновляем Локальную копию массива регистров 
+			}
+			sei();            // Закрываем критическую секцию
+ 48a:	78 94       	sei
+		sei();                // Закрываем критическую секцию
+		
+		//--------------------------------------------
+		if (update)           // Флаг установлен?
+		{
+			update = false;   // Сбрасывем флаг
+ 48c:	80 e0       	ldi	r24, 0x00	; 0
+ 48e:	cf cf       	rjmp	.-98     	; 0x42e <__DATA_REGION_LENGTH__+0x2e>
+
+00000490 <__umulhisi3>:
+ 490:	a2 9f       	mul	r26, r18
+ 492:	b0 01       	movw	r22, r0
+ 494:	b3 9f       	mul	r27, r19
+ 496:	c0 01       	movw	r24, r0
+ 498:	a3 9f       	mul	r26, r19
+ 49a:	01 d0       	rcall	.+2      	; 0x49e <__umulhisi3+0xe>
+ 49c:	b2 9f       	mul	r27, r18
+ 49e:	70 0d       	add	r23, r0
+ 4a0:	81 1d       	adc	r24, r1
+ 4a2:	11 24       	eor	r1, r1
+ 4a4:	91 1d       	adc	r25, r1
+ 4a6:	08 95       	ret
+
+000004a8 <_exit>:
+ 4a8:	f8 94       	cli
+
+000004aa <__stop_program>:
+ 4aa:	ff cf       	rjmp	.-2      	; 0x4aa <__stop_program>
