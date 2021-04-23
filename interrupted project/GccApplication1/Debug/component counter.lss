@@ -3,31 +3,31 @@ component counter.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000004ac  00000000  00000000  00000094  2**1
+  0 .text         000004c4  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000004  00800060  000004ac  00000540  2**0
+  1 .data         00000004  00800060  000004c4  00000558  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000004  00800064  00800064  00000544  2**0
+  2 .bss          00000004  00800064  00800064  0000055c  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000544  2**0
+  3 .comment      00000030  00000000  00000000  0000055c  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000574  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000058c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000058  00000000  00000000  000005b0  2**0
+  5 .debug_aranges 00000058  00000000  00000000  000005c8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000007c8  00000000  00000000  00000608  2**0
+  6 .debug_info   000007c8  00000000  00000000  00000620  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000641  00000000  00000000  00000dd0  2**0
+  7 .debug_abbrev 00000641  00000000  00000000  00000de8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000545  00000000  00000000  00001411  2**0
+  8 .debug_line   0000055d  00000000  00000000  00001429  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000108  00000000  00000000  00001958  2**2
+  9 .debug_frame  00000108  00000000  00000000  00001988  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000038a  00000000  00000000  00001a60  2**0
+ 10 .debug_str    0000038e  00000000  00000000  00001a90  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000073a  00000000  00000000  00001dea  2**0
+ 11 .debug_loc    0000073a  00000000  00000000  00001e1e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000048  00000000  00000000  00002524  2**0
+ 12 .debug_ranges 00000048  00000000  00000000  00002558  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -156,7 +156,7 @@ Disassembly of section .text:
   e8:	10 e0       	ldi	r17, 0x00	; 0
   ea:	a0 e6       	ldi	r26, 0x60	; 96
   ec:	b0 e0       	ldi	r27, 0x00	; 0
-  ee:	ec ea       	ldi	r30, 0xAC	; 172
+  ee:	e4 ec       	ldi	r30, 0xC4	; 196
   f0:	f4 e0       	ldi	r31, 0x04	; 4
   f2:	02 c0       	rjmp	.+4      	; 0xf8 <__do_copy_data+0x10>
   f4:	05 90       	lpm	r0, Z+
@@ -179,7 +179,7 @@ Disassembly of section .text:
  10a:	b2 07       	cpc	r27, r18
  10c:	e1 f7       	brne	.-8      	; 0x106 <.do_clear_bss_loop>
  10e:	71 d1       	rcall	.+738    	; 0x3f2 <main>
- 110:	cb c1       	rjmp	.+918    	; 0x4a8 <_exit>
+ 110:	d7 c1       	rjmp	.+942    	; 0x4c0 <_exit>
 
 00000112 <__bad_interrupt>:
  112:	76 cf       	rjmp	.-276    	; 0x0 <__vectors>
@@ -633,7 +633,7 @@ void ledprint(unsigned int number, unsigned char Rl[4])
  386:	97 01       	movw	r18, r14
  388:	ad ec       	ldi	r26, 0xCD	; 205
  38a:	bc ec       	ldi	r27, 0xCC	; 204
- 38c:	81 d0       	rcall	.+258    	; 0x490 <__umulhisi3>
+ 38c:	8d d0       	rcall	.+282    	; 0x4a8 <__umulhisi3>
  38e:	96 95       	lsr	r25
  390:	87 95       	ror	r24
  392:	96 95       	lsr	r25
@@ -669,7 +669,7 @@ void ledprint(unsigned int number, unsigned char Rl[4])
  3ca:	97 01       	movw	r18, r14
  3cc:	ad ec       	ldi	r26, 0xCD	; 205
  3ce:	bc ec       	ldi	r27, 0xCC	; 204
- 3d0:	5f d0       	rcall	.+190    	; 0x490 <__umulhisi3>
+ 3d0:	6b d0       	rcall	.+214    	; 0x4a8 <__umulhisi3>
  3d2:	7c 01       	movw	r14, r24
  3d4:	f6 94       	lsr	r15
  3d6:	e7 94       	ror	r14
@@ -717,154 +717,170 @@ int main(void)
  3fe:	84 b3       	in	r24, 0x14	; 20
  400:	8f 7c       	andi	r24, 0xCF	; 207
  402:	84 bb       	out	0x14, r24	; 20
-	PORTC |=  0b00110000; // Поддтяжка
+	PORTC |=  0b00110000; // Подтяжка
  404:	85 b3       	in	r24, 0x15	; 21
  406:	80 63       	ori	r24, 0x30	; 48
  408:	85 bb       	out	0x15, r24	; 21
-	DDRD  &= ~0b00010000; // Единица для кнопки
+	DDRD  &= ~0b00010000; // Кнопка сброса
  40a:	81 b3       	in	r24, 0x11	; 17
  40c:	8f 7e       	andi	r24, 0xEF	; 239
  40e:	81 bb       	out	0x11, r24	; 17
-	PORTD |=  0b00010000; // Единица для кнопки
+	PORTD |=  0b00010000; // Кнопка сброса
  410:	82 b3       	in	r24, 0x12	; 18
  412:	80 61       	ori	r24, 0x10	; 16
  414:	82 bb       	out	0x12, r24	; 18
+	DDRD  &= ~0b00100000; // Кнопка down
+ 416:	81 b3       	in	r24, 0x11	; 17
+ 418:	8f 7d       	andi	r24, 0xDF	; 223
+ 41a:	81 bb       	out	0x11, r24	; 17
+	PORTD |=  0b00100000; // Кнопка down
+ 41c:	82 b3       	in	r24, 0x12	; 18
+ 41e:	80 62       	ori	r24, 0x20	; 32
+ 420:	82 bb       	out	0x12, r24	; 18
+	DDRD  &= ~0b01000000; // Кнопка up
+ 422:	81 b3       	in	r24, 0x11	; 17
+ 424:	8f 7b       	andi	r24, 0xBF	; 191
+ 426:	81 bb       	out	0x11, r24	; 17
+	PORTD |=  0b01000000; // Кнопка up
+ 428:	82 b3       	in	r24, 0x12	; 18
+ 42a:	80 64       	ori	r24, 0x40	; 64
+ 42c:	82 bb       	out	0x12, r24	; 18
 	//--------------------------------------------
 	timer_ini();
- 416:	2b df       	rcall	.-426    	; 0x26e <timer_ini>
+ 42e:	1f df       	rcall	.-450    	; 0x26e <timer_ini>
 	turnoffall();
- 418:	fc de       	rcall	.-520    	; 0x212 <turnoffall>
+ 430:	f0 de       	rcall	.-544    	; 0x212 <turnoffall>
 	//--------------------------------------------
 	sei();                // Разрешаем прерывания. Это важно!
- 41a:	78 94       	sei
+ 432:	78 94       	sei
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 41c:	83 ec       	ldi	r24, 0xC3	; 195
- 41e:	99 e0       	ldi	r25, 0x09	; 9
- 420:	01 97       	sbiw	r24, 0x01	; 1
- 422:	f1 f7       	brne	.-4      	; 0x420 <__DATA_REGION_LENGTH__+0x20>
- 424:	00 c0       	rjmp	.+0      	; 0x426 <__DATA_REGION_LENGTH__+0x26>
- 426:	00 00       	nop
+ 434:	83 ec       	ldi	r24, 0xC3	; 195
+ 436:	99 e0       	ldi	r25, 0x09	; 9
+ 438:	01 97       	sbiw	r24, 0x01	; 1
+ 43a:	f1 f7       	brne	.-4      	; 0x438 <__DATA_REGION_LENGTH__+0x38>
+ 43c:	00 c0       	rjmp	.+0      	; 0x43e <__DATA_REGION_LENGTH__+0x3e>
+ 43e:	00 00       	nop
 	_delay_ms(10);        // Задержка на вывод заставки
 	update = true;        // Принудительно обновим дисплей в первый раз
- 428:	81 e0       	ldi	r24, 0x01	; 1
+ 440:	81 e0       	ldi	r24, 0x01	; 1
 
 // Начинаем начинать 
 int main(void)
 {
 	unsigned char Rx[4];  // Обьявим локальный массив для разрядов 
 	short cnt_local = 0;  // Для сохранения подсчета внутри критической секции
- 42a:	00 e0       	ldi	r16, 0x00	; 0
- 42c:	10 e0       	ldi	r17, 0x00	; 0
+ 442:	00 e0       	ldi	r16, 0x00	; 0
+ 444:	10 e0       	ldi	r17, 0x00	; 0
 	_delay_ms(10);        // Задержка на вывод заставки
 	update = true;        // Принудительно обновим дисплей в первый раз
 	//--------------------------------------------	
 	while(1)
 	{
 		cli();                // Открываем критическую секцию 
- 42e:	f8 94       	cli
+ 446:	f8 94       	cli
 		if (cnt_local != cnt) // Если счетчик изменился?
- 430:	20 91 66 00 	lds	r18, 0x0066	; 0x800066 <cnt>
- 434:	30 91 67 00 	lds	r19, 0x0067	; 0x800067 <cnt+0x1>
- 438:	02 17       	cp	r16, r18
- 43a:	13 07       	cpc	r17, r19
- 43c:	29 f0       	breq	.+10     	; 0x448 <__DATA_REGION_LENGTH__+0x48>
+ 448:	20 91 66 00 	lds	r18, 0x0066	; 0x800066 <cnt>
+ 44c:	30 91 67 00 	lds	r19, 0x0067	; 0x800067 <cnt+0x1>
+ 450:	02 17       	cp	r16, r18
+ 452:	13 07       	cpc	r17, r19
+ 454:	29 f0       	breq	.+10     	; 0x460 <__stack+0x1>
 		{
 			cnt_local = cnt;  // Обновляем Локальную копию счетчика
- 43e:	00 91 66 00 	lds	r16, 0x0066	; 0x800066 <cnt>
- 442:	10 91 67 00 	lds	r17, 0x0067	; 0x800067 <cnt+0x1>
+ 456:	00 91 66 00 	lds	r16, 0x0066	; 0x800066 <cnt>
+ 45a:	10 91 67 00 	lds	r17, 0x0067	; 0x800067 <cnt+0x1>
 			update = true;    // Устанавливаем флаг перерисовки дисплея
- 446:	81 e0       	ldi	r24, 0x01	; 1
+ 45e:	81 e0       	ldi	r24, 0x01	; 1
 		}
 		sei();                // Закрываем критическую секцию
- 448:	78 94       	sei
+ 460:	78 94       	sei
 		
 		//--------------------------------------------
 		if (update)           // Флаг установлен?
- 44a:	88 23       	and	r24, r24
- 44c:	81 f3       	breq	.-32     	; 0x42e <__DATA_REGION_LENGTH__+0x2e>
+ 462:	88 23       	and	r24, r24
+ 464:	81 f3       	breq	.-32     	; 0x446 <__DATA_REGION_LENGTH__+0x46>
 			/*
 			Пересчитывам буфер.
 			Вот здесь из отрицательного числа делаем положительное 
 			что бы не зависть от направления вращения энкодера после включения
 			*/
 			ledprint(cnt_local >= 0 ? cnt_local : -cnt_local, Rx);
- 44e:	c8 01       	movw	r24, r16
- 450:	11 23       	and	r17, r17
- 452:	24 f4       	brge	.+8      	; 0x45c <__DATA_REGION_LENGTH__+0x5c>
- 454:	88 27       	eor	r24, r24
- 456:	99 27       	eor	r25, r25
- 458:	80 1b       	sub	r24, r16
- 45a:	91 0b       	sbc	r25, r17
- 45c:	be 01       	movw	r22, r28
- 45e:	6f 5f       	subi	r22, 0xFF	; 255
- 460:	7f 4f       	sbci	r23, 0xFF	; 255
- 462:	83 df       	rcall	.-250    	; 0x36a <ledprint>
+ 466:	c8 01       	movw	r24, r16
+ 468:	11 23       	and	r17, r17
+ 46a:	24 f4       	brge	.+8      	; 0x474 <__stack+0x15>
+ 46c:	88 27       	eor	r24, r24
+ 46e:	99 27       	eor	r25, r25
+ 470:	80 1b       	sub	r24, r16
+ 472:	91 0b       	sbc	r25, r17
+ 474:	be 01       	movw	r22, r28
+ 476:	6f 5f       	subi	r22, 0xFF	; 255
+ 478:	7f 4f       	sbci	r23, 0xFF	; 255
+ 47a:	77 df       	rcall	.-274    	; 0x36a <ledprint>
 			
 			//--------------------------------------------
 			cli();            // Открываем критическую секцию 
- 464:	f8 94       	cli
+ 47c:	f8 94       	cli
 			for (int w = 0; w < sizeof(R) / sizeof(R[0]);  w++)
- 466:	80 e0       	ldi	r24, 0x00	; 0
- 468:	90 e0       	ldi	r25, 0x00	; 0
- 46a:	0c c0       	rjmp	.+24     	; 0x484 <__stack+0x25>
+ 47e:	80 e0       	ldi	r24, 0x00	; 0
+ 480:	90 e0       	ldi	r25, 0x00	; 0
+ 482:	0c c0       	rjmp	.+24     	; 0x49c <__stack+0x3d>
 			{
 				R[w] = Rx[w]; // Обновляем Локальную копию массива регистров 
- 46c:	e1 e0       	ldi	r30, 0x01	; 1
- 46e:	f0 e0       	ldi	r31, 0x00	; 0
- 470:	ec 0f       	add	r30, r28
- 472:	fd 1f       	adc	r31, r29
- 474:	e8 0f       	add	r30, r24
- 476:	f9 1f       	adc	r31, r25
- 478:	20 81       	ld	r18, Z
- 47a:	fc 01       	movw	r30, r24
- 47c:	e0 5a       	subi	r30, 0xA0	; 160
- 47e:	ff 4f       	sbci	r31, 0xFF	; 255
- 480:	20 83       	st	Z, r18
+ 484:	e1 e0       	ldi	r30, 0x01	; 1
+ 486:	f0 e0       	ldi	r31, 0x00	; 0
+ 488:	ec 0f       	add	r30, r28
+ 48a:	fd 1f       	adc	r31, r29
+ 48c:	e8 0f       	add	r30, r24
+ 48e:	f9 1f       	adc	r31, r25
+ 490:	20 81       	ld	r18, Z
+ 492:	fc 01       	movw	r30, r24
+ 494:	e0 5a       	subi	r30, 0xA0	; 160
+ 496:	ff 4f       	sbci	r31, 0xFF	; 255
+ 498:	20 83       	st	Z, r18
 			*/
 			ledprint(cnt_local >= 0 ? cnt_local : -cnt_local, Rx);
 			
 			//--------------------------------------------
 			cli();            // Открываем критическую секцию 
 			for (int w = 0; w < sizeof(R) / sizeof(R[0]);  w++)
- 482:	01 96       	adiw	r24, 0x01	; 1
- 484:	84 30       	cpi	r24, 0x04	; 4
- 486:	91 05       	cpc	r25, r1
- 488:	88 f3       	brcs	.-30     	; 0x46c <__stack+0xd>
+ 49a:	01 96       	adiw	r24, 0x01	; 1
+ 49c:	84 30       	cpi	r24, 0x04	; 4
+ 49e:	91 05       	cpc	r25, r1
+ 4a0:	88 f3       	brcs	.-30     	; 0x484 <__stack+0x25>
 			{
 				R[w] = Rx[w]; // Обновляем Локальную копию массива регистров 
 			}
 			sei();            // Закрываем критическую секцию
- 48a:	78 94       	sei
+ 4a2:	78 94       	sei
 		sei();                // Закрываем критическую секцию
 		
 		//--------------------------------------------
 		if (update)           // Флаг установлен?
 		{
 			update = false;   // Сбрасывем флаг
- 48c:	80 e0       	ldi	r24, 0x00	; 0
- 48e:	cf cf       	rjmp	.-98     	; 0x42e <__DATA_REGION_LENGTH__+0x2e>
+ 4a4:	80 e0       	ldi	r24, 0x00	; 0
+ 4a6:	cf cf       	rjmp	.-98     	; 0x446 <__DATA_REGION_LENGTH__+0x46>
 
-00000490 <__umulhisi3>:
- 490:	a2 9f       	mul	r26, r18
- 492:	b0 01       	movw	r22, r0
- 494:	b3 9f       	mul	r27, r19
- 496:	c0 01       	movw	r24, r0
- 498:	a3 9f       	mul	r26, r19
- 49a:	01 d0       	rcall	.+2      	; 0x49e <__umulhisi3+0xe>
- 49c:	b2 9f       	mul	r27, r18
- 49e:	70 0d       	add	r23, r0
- 4a0:	81 1d       	adc	r24, r1
- 4a2:	11 24       	eor	r1, r1
- 4a4:	91 1d       	adc	r25, r1
- 4a6:	08 95       	ret
+000004a8 <__umulhisi3>:
+ 4a8:	a2 9f       	mul	r26, r18
+ 4aa:	b0 01       	movw	r22, r0
+ 4ac:	b3 9f       	mul	r27, r19
+ 4ae:	c0 01       	movw	r24, r0
+ 4b0:	a3 9f       	mul	r26, r19
+ 4b2:	01 d0       	rcall	.+2      	; 0x4b6 <__umulhisi3+0xe>
+ 4b4:	b2 9f       	mul	r27, r18
+ 4b6:	70 0d       	add	r23, r0
+ 4b8:	81 1d       	adc	r24, r1
+ 4ba:	11 24       	eor	r1, r1
+ 4bc:	91 1d       	adc	r25, r1
+ 4be:	08 95       	ret
 
-000004a8 <_exit>:
- 4a8:	f8 94       	cli
+000004c0 <_exit>:
+ 4c0:	f8 94       	cli
 
-000004aa <__stop_program>:
- 4aa:	ff cf       	rjmp	.-2      	; 0x4aa <__stop_program>
+000004c2 <__stop_program>:
+ 4c2:	ff cf       	rjmp	.-2      	; 0x4c2 <__stop_program>
