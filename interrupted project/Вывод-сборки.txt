@@ -37,7 +37,7 @@
 		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "component counter.elf" "component counter.srec"
 		"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "component counter.elf"
 		   text	   data	    bss	    dec	    hex	filename
-		   1520	      6	      6	   1532	    5fc	component counter.elf
+		   1670	      6	      6	   1682	    692	component counter.elf
 	Выполнение задачи "RunCompilerTask" завершено.
 	Задача "RunOutputFileVerifyTask"
 		Параметр задачи:Project=component counter
@@ -51,7 +51,7 @@
 		Параметр задачи:ToolchainFlavour=Native
 		Параметр задачи:Directory=C:\Users\Мастер\Documents\GitHub\-\interrupted project\GccApplication1
 		Параметр задачи:ToolchainSettings=<AvrGcc xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><avrgcc.common.Device>-mmcu=atmega8a -B "$(PackRepoDir)\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega8a"</avrgcc.common.Device><avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex><avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss><avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep><avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec><avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures><avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned><avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned><avrgcc.compiler.symbols.DefSymbols><ListValues><Value>DEBUG</Value></ListValues></avrgcc.compiler.symbols.DefSymbols><avrgcc.compiler.directories.IncludePaths><ListValues><Value>$(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value></ListValues></avrgcc.compiler.directories.IncludePaths><avrgcc.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcc.compiler.optimization.level><avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers><avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum><avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel><avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings><avrgcc.linker.libraries.Libraries><ListValues><Value>libm</Value></ListValues></avrgcc.linker.libraries.Libraries><avrgcc.assembler.general.IncludePaths><ListValues><Value>$(PackRepoDir)\atmel\ATmega_DFP\1.6.364\include\</Value></ListValues></avrgcc.assembler.general.IncludePaths><avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel></AvrGcc>
-				Program Memory Usage 	:	1526 bytes   18,6 % Full
+				Program Memory Usage 	:	1676 bytes   20,5 % Full
 				Data Memory Usage 		:	12 bytes   1,2 % Full
 				Warning: Memory Usage estimation may not be accurate if there are sections other than .text sections in ELF file
 	Выполнение задачи "RunOutputFileVerifyTask" завершено.
