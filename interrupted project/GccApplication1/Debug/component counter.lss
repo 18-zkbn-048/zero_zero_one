@@ -3,31 +3,31 @@ component counter.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000686  00000000  00000000  00000094  2**1
+  0 .text         0000062e  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000006  00800060  00000686  0000071a  2**0
+  1 .data         00000006  00800060  0000062e  000006c2  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000006  00800066  00800066  00000720  2**0
+  2 .bss          00000006  00800066  00800066  000006c8  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000720  2**0
+  3 .comment      00000030  00000000  00000000  000006c8  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000750  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006f8  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000058  00000000  00000000  0000078c  2**0
+  5 .debug_aranges 00000058  00000000  00000000  00000734  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000091b  00000000  00000000  000007e4  2**0
+  6 .debug_info   000008a7  00000000  00000000  0000078c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000659  00000000  00000000  000010ff  2**0
+  7 .debug_abbrev 00000659  00000000  00000000  00001033  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000749  00000000  00000000  00001758  2**0
+  8 .debug_line   000006e9  00000000  00000000  0000168c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000108  00000000  00000000  00001ea4  2**2
+  9 .debug_frame  00000108  00000000  00000000  00001d78  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000003cb  00000000  00000000  00001fac  2**0
+ 10 .debug_str    000003cb  00000000  00000000  00001e80  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000947  00000000  00000000  00002377  2**0
+ 11 .debug_loc    00000875  00000000  00000000  0000224b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000048  00000000  00000000  00002cbe  2**0
+ 12 .debug_ranges 00000048  00000000  00000000  00002ac0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -156,7 +156,7 @@ Disassembly of section .text:
   e8:	10 e0       	ldi	r17, 0x00	; 0
   ea:	a0 e6       	ldi	r26, 0x60	; 96
   ec:	b0 e0       	ldi	r27, 0x00	; 0
-  ee:	e6 e8       	ldi	r30, 0x86	; 134
+  ee:	ee e2       	ldi	r30, 0x2E	; 46
   f0:	f6 e0       	ldi	r31, 0x06	; 6
   f2:	02 c0       	rjmp	.+4      	; 0xf8 <__do_copy_data+0x10>
   f4:	05 90       	lpm	r0, Z+
@@ -179,13 +179,13 @@ Disassembly of section .text:
  10a:	b2 07       	cpc	r27, r18
  10c:	e1 f7       	brne	.-8      	; 0x106 <.do_clear_bss_loop>
  10e:	93 d1       	rcall	.+806    	; 0x436 <main>
- 110:	b8 c2       	rjmp	.+1392   	; 0x682 <_exit>
+ 110:	8c c2       	rjmp	.+1304   	; 0x62a <_exit>
 
 00000112 <__bad_interrupt>:
  112:	76 cf       	rjmp	.-276    	; 0x0 <__vectors>
 
 00000114 <segchar>:
-const uint8_t bounce = 50; // Значение дребезга кнопки, можно править и подбирать !
+const uint8_t bounce = 30; // Значение дребезга кнопки, можно править и подбирать !
 
 // Учим зажигать цифры и буквы
 void segchar(unsigned char ch)
@@ -582,7 +582,7 @@ ISR (TIMER1_COMPA_vect)
  340:	83 99       	sbic	0x10, 3	; 16
  342:	08 c0       	rjmp	.+16     	; 0x354 <__vector_6+0xcc>
  344:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <consider_Down>
- 348:	82 33       	cpi	r24, 0x32	; 50
+ 348:	8e 31       	cpi	r24, 0x1E	; 30
  34a:	20 f4       	brcc	.+8      	; 0x354 <__vector_6+0xcc>
  34c:	8f 5f       	subi	r24, 0xFF	; 255
  34e:	80 93 67 00 	sts	0x0067, r24	; 0x800067 <consider_Down>
@@ -601,7 +601,7 @@ ISR (TIMER1_COMPA_vect)
  362:	82 99       	sbic	0x10, 2	; 16
  364:	08 c0       	rjmp	.+16     	; 0x376 <__vector_6+0xee>
  366:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <consider_Up>
- 36a:	82 33       	cpi	r24, 0x32	; 50
+ 36a:	8e 31       	cpi	r24, 0x1E	; 30
  36c:	20 f4       	brcc	.+8      	; 0x376 <__vector_6+0xee>
  36e:	8f 5f       	subi	r24, 0xFF	; 255
  370:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <consider_Up>
@@ -672,7 +672,7 @@ void ledprint(unsigned int number, unsigned char Rl[4])
  3ca:	97 01       	movw	r18, r14
  3cc:	ad ec       	ldi	r26, 0xCD	; 205
  3ce:	bc ec       	ldi	r27, 0xCC	; 204
- 3d0:	38 d1       	rcall	.+624    	; 0x642 <__umulhisi3>
+ 3d0:	0c d1       	rcall	.+536    	; 0x5ea <__umulhisi3>
  3d2:	96 95       	lsr	r25
  3d4:	87 95       	ror	r24
  3d6:	96 95       	lsr	r25
@@ -708,7 +708,7 @@ void ledprint(unsigned int number, unsigned char Rl[4])
  40e:	97 01       	movw	r18, r14
  410:	ad ec       	ldi	r26, 0xCD	; 205
  412:	bc ec       	ldi	r27, 0xCC	; 204
- 414:	16 d1       	rcall	.+556    	; 0x642 <__umulhisi3>
+ 414:	ea d0       	rcall	.+468    	; 0x5ea <__umulhisi3>
  416:	7c 01       	movw	r14, r24
  418:	f6 94       	lsr	r15
  41a:	e7 94       	ror	r14
@@ -812,14 +812,14 @@ int main(void)
 	bool update;            // Флаг перерисовки дисплея
 	bool klik_Down = false; // Состаяние кнопки Down
 	bool klik_Up = false;   // Состаяние кнопки Up
- 484:	e1 2c       	mov	r14, r1
+ 484:	10 e0       	ldi	r17, 0x00	; 0
 int main(void)
 {
 	unsigned char Rx[4];    // Обьявим локальный массив для разрядов 
 	short cnt_local = 0;    // Для сохранения подсчета внутри критической секции
 	bool update;            // Флаг перерисовки дисплея
 	bool klik_Down = false; // Состаяние кнопки Down
- 486:	f1 2c       	mov	r15, r1
+ 486:	00 e0       	ldi	r16, 0x00	; 0
 	timer_ini();
 	turnoffall();
 	//--------------------------------------------
@@ -833,8 +833,8 @@ int main(void)
 {
 	unsigned char Rx[4];    // Обьявим локальный массив для разрядов 
 	short cnt_local = 0;    // Для сохранения подсчета внутри критической секции
- 48a:	00 e0       	ldi	r16, 0x00	; 0
- 48c:	10 e0       	ldi	r17, 0x00	; 0
+ 48a:	e1 2c       	mov	r14, r1
+ 48c:	f1 2c       	mov	r15, r1
 	_delay_ms(10);        // Задержка на вывод заставки
 	update = true;        // Принудительно обновим дисплей в первый раз
 	//--------------------------------------------	
@@ -845,8 +845,8 @@ int main(void)
 		if (cnt_local != cnt) // Если счетчик изменился?
  490:	20 91 6a 00 	lds	r18, 0x006A	; 0x80006a <cnt>
  494:	30 91 6b 00 	lds	r19, 0x006B	; 0x80006b <cnt+0x1>
- 498:	02 17       	cp	r16, r18
- 49a:	13 07       	cpc	r17, r19
+ 498:	e2 16       	cp	r14, r18
+ 49a:	f3 06       	cpc	r15, r19
  49c:	99 f0       	breq	.+38     	; 0x4c4 <__stack+0x65>
 		{
 			// Обновляем Локальную копию счетчика + шаг программы 
@@ -858,8 +858,8 @@ int main(void)
  4aa:	90 91 6b 00 	lds	r25, 0x006B	; 0x80006b <cnt+0x1>
  4ae:	66 95       	lsr	r22
  4b0:	70 e0       	ldi	r23, 0x00	; 0
- 4b2:	b4 d0       	rcall	.+360    	; 0x61c <__divmodhi4>
- 4b4:	8b 01       	movw	r16, r22
+ 4b2:	88 d0       	rcall	.+272    	; 0x5c4 <__divmodhi4>
+ 4b4:	7b 01       	movw	r14, r22
 			else cnt_local = cnt;
 			update = true;    // Устанавливаем флаг перерисовки дисплея
  4b6:	91 e0       	ldi	r25, 0x01	; 1
@@ -870,8 +870,8 @@ int main(void)
 			// Обновляем Локальную копию счетчика + шаг программы 
 			if (prog_step > 2) cnt_local = cnt / (prog_step / 2); 
 			else cnt_local = cnt;
- 4ba:	00 91 6a 00 	lds	r16, 0x006A	; 0x80006a <cnt>
- 4be:	10 91 6b 00 	lds	r17, 0x006B	; 0x80006b <cnt+0x1>
+ 4ba:	e0 90 6a 00 	lds	r14, 0x006A	; 0x80006a <cnt>
+ 4be:	f0 90 6b 00 	lds	r15, 0x006B	; 0x80006b <cnt+0x1>
 			update = true;    // Устанавливаем флаг перерисовки дисплея
  4c2:	91 e0       	ldi	r25, 0x01	; 1
 		}
@@ -879,388 +879,312 @@ int main(void)
  4c4:	78 94       	sei
 		
 		//--------------------------------------------
-		cli();                                     // Открываем критическую секцию
+		cli();                                          // Открываем критическую секцию
  4c6:	f8 94       	cli
 		if (consider_Down == bounce) klik_Down = true;  // Будем считать что кнопка нажата 
  4c8:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <consider_Down>
- 4cc:	82 33       	cpi	r24, 0x32	; 50
+ 4cc:	8e 31       	cpi	r24, 0x1E	; 30
  4ce:	19 f0       	breq	.+6      	; 0x4d6 <__stack+0x77>
 		else 
 		{
-		if (consider_Down == 0) klik_Down = false; // Кнопка не тронута 	
+		if (consider_Down == 0) klik_Down = false;      // Кнопка не тронута 	
  4d0:	88 23       	and	r24, r24
- 4d2:	21 f0       	breq	.+8      	; 0x4dc <__stack+0x7d>
- 4d4:	04 c0       	rjmp	.+8      	; 0x4de <__stack+0x7f>
+ 4d2:	19 f0       	breq	.+6      	; 0x4da <__stack+0x7b>
+ 4d4:	03 c0       	rjmp	.+6      	; 0x4dc <__stack+0x7d>
 		}
 		sei();                // Закрываем критическую секцию
 		
 		//--------------------------------------------
-		cli();                                     // Открываем критическую секцию
+		cli();                                          // Открываем критическую секцию
 		if (consider_Down == bounce) klik_Down = true;  // Будем считать что кнопка нажата 
- 4d6:	ff 24       	eor	r15, r15
- 4d8:	f3 94       	inc	r15
- 4da:	01 c0       	rjmp	.+2      	; 0x4de <__stack+0x7f>
+ 4d6:	01 e0       	ldi	r16, 0x01	; 1
+ 4d8:	01 c0       	rjmp	.+2      	; 0x4dc <__stack+0x7d>
 		else 
 		{
-		if (consider_Down == 0) klik_Down = false; // Кнопка не тронута 	
- 4dc:	f1 2c       	mov	r15, r1
+		if (consider_Down == 0) klik_Down = false;      // Кнопка не тронута 	
+ 4da:	00 e0       	ldi	r16, 0x00	; 0
 		}
-		sei();                                     // Закрываем критическую секцию
- 4de:	78 94       	sei
+		sei();                                          // Закрываем критическую секцию
+ 4dc:	78 94       	sei
 		//--------------------------------------------
-		cli();                                     // Открываем критическую секцию
- 4e0:	f8 94       	cli
-		if (consider_Up == bounce) klik_Up = true;     // Будем считать что кнопка нажата
- 4e2:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <consider_Up>
- 4e6:	82 33       	cpi	r24, 0x32	; 50
- 4e8:	19 f0       	breq	.+6      	; 0x4f0 <__stack+0x91>
+		cli();                                          // Открываем критическую секцию
+ 4de:	f8 94       	cli
+		if (consider_Up == bounce) klik_Up = true;      // Будем считать что кнопка нажата
+ 4e0:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <consider_Up>
+ 4e4:	8e 31       	cpi	r24, 0x1E	; 30
+ 4e6:	19 f0       	breq	.+6      	; 0x4ee <__stack+0x8f>
 		else
 		{
-			if (consider_Up == 0) klik_Up = false; // Кнопка не тронута
- 4ea:	88 23       	and	r24, r24
- 4ec:	21 f0       	breq	.+8      	; 0x4f6 <__stack+0x97>
- 4ee:	04 c0       	rjmp	.+8      	; 0x4f8 <__stack+0x99>
-		if (consider_Down == 0) klik_Down = false; // Кнопка не тронута 	
+			if (consider_Up == 0) klik_Up = false;      // Кнопка не тронута
+ 4e8:	88 23       	and	r24, r24
+ 4ea:	19 f0       	breq	.+6      	; 0x4f2 <__stack+0x93>
+ 4ec:	03 c0       	rjmp	.+6      	; 0x4f4 <__stack+0x95>
+		if (consider_Down == 0) klik_Down = false;      // Кнопка не тронута 	
 		}
-		sei();                                     // Закрываем критическую секцию
+		sei();                                          // Закрываем критическую секцию
 		//--------------------------------------------
-		cli();                                     // Открываем критическую секцию
-		if (consider_Up == bounce) klik_Up = true;     // Будем считать что кнопка нажата
- 4f0:	ee 24       	eor	r14, r14
- 4f2:	e3 94       	inc	r14
- 4f4:	01 c0       	rjmp	.+2      	; 0x4f8 <__stack+0x99>
+		cli();                                          // Открываем критическую секцию
+		if (consider_Up == bounce) klik_Up = true;      // Будем считать что кнопка нажата
+ 4ee:	11 e0       	ldi	r17, 0x01	; 1
+ 4f0:	01 c0       	rjmp	.+2      	; 0x4f4 <__stack+0x95>
 		else
 		{
-			if (consider_Up == 0) klik_Up = false; // Кнопка не тронута
- 4f6:	e1 2c       	mov	r14, r1
+			if (consider_Up == 0) klik_Up = false;      // Кнопка не тронута
+ 4f2:	10 e0       	ldi	r17, 0x00	; 0
 		}
-		sei();                                     // Закрываем критическую секцию
- 4f8:	78 94       	sei
+		sei();                                          // Закрываем критическую секцию
+ 4f4:	78 94       	sei
 		//--------------------------------------------
 		if (update)           // Флаг установлен?
- 4fa:	99 23       	and	r25, r25
- 4fc:	01 f1       	breq	.+64     	; 0x53e <__stack+0xdf>
+ 4f6:	99 23       	and	r25, r25
+ 4f8:	09 f4       	brne	.+2      	; 0x4fc <__stack+0x9d>
+ 4fa:	55 c0       	rjmp	.+170    	; 0x5a6 <__stack+0x147>
 			/*
 			Пересчитывам буфер.
 			Вот здесь из отрицательного числа делаем положительное 
 			что бы не зависть от направления вращения энкодера после включения
 			*/
 			ledprint(cnt_local >= 0 ? cnt_local : -cnt_local, Rx); // Шедевр простоты !!!
- 4fe:	c8 01       	movw	r24, r16
- 500:	11 23       	and	r17, r17
- 502:	24 f4       	brge	.+8      	; 0x50c <__stack+0xad>
- 504:	88 27       	eor	r24, r24
- 506:	99 27       	eor	r25, r25
- 508:	80 1b       	sub	r24, r16
- 50a:	91 0b       	sbc	r25, r17
- 50c:	be 01       	movw	r22, r28
- 50e:	6f 5f       	subi	r22, 0xFF	; 255
- 510:	7f 4f       	sbci	r23, 0xFF	; 255
- 512:	4d df       	rcall	.-358    	; 0x3ae <ledprint>
+ 4fc:	c7 01       	movw	r24, r14
+ 4fe:	ff 20       	and	r15, r15
+ 500:	24 f4       	brge	.+8      	; 0x50a <__stack+0xab>
+ 502:	88 27       	eor	r24, r24
+ 504:	99 27       	eor	r25, r25
+ 506:	8e 19       	sub	r24, r14
+ 508:	9f 09       	sbc	r25, r15
+ 50a:	be 01       	movw	r22, r28
+ 50c:	6f 5f       	subi	r22, 0xFF	; 255
+ 50e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 510:	4e df       	rcall	.-356    	; 0x3ae <ledprint>
 			
 			//--------------------------------------------
 			cli();            // Открываем критическую секцию 
- 514:	f8 94       	cli
+ 512:	f8 94       	cli
 			for (int w = 0; w < sizeof(R) / sizeof(R[0]);  w++)
- 516:	80 e0       	ldi	r24, 0x00	; 0
- 518:	90 e0       	ldi	r25, 0x00	; 0
- 51a:	0c c0       	rjmp	.+24     	; 0x534 <__stack+0xd5>
+ 514:	80 e0       	ldi	r24, 0x00	; 0
+ 516:	90 e0       	ldi	r25, 0x00	; 0
+ 518:	0c c0       	rjmp	.+24     	; 0x532 <__stack+0xd3>
 			{
 				R[w] = Rx[w]; // Обновляем Локальную копию массива регистров 
- 51c:	e1 e0       	ldi	r30, 0x01	; 1
- 51e:	f0 e0       	ldi	r31, 0x00	; 0
- 520:	ec 0f       	add	r30, r28
- 522:	fd 1f       	adc	r31, r29
- 524:	e8 0f       	add	r30, r24
- 526:	f9 1f       	adc	r31, r25
- 528:	20 81       	ld	r18, Z
- 52a:	fc 01       	movw	r30, r24
- 52c:	ef 59       	subi	r30, 0x9F	; 159
- 52e:	ff 4f       	sbci	r31, 0xFF	; 255
- 530:	20 83       	st	Z, r18
+ 51a:	e1 e0       	ldi	r30, 0x01	; 1
+ 51c:	f0 e0       	ldi	r31, 0x00	; 0
+ 51e:	ec 0f       	add	r30, r28
+ 520:	fd 1f       	adc	r31, r29
+ 522:	e8 0f       	add	r30, r24
+ 524:	f9 1f       	adc	r31, r25
+ 526:	20 81       	ld	r18, Z
+ 528:	fc 01       	movw	r30, r24
+ 52a:	ef 59       	subi	r30, 0x9F	; 159
+ 52c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 52e:	20 83       	st	Z, r18
 			*/
 			ledprint(cnt_local >= 0 ? cnt_local : -cnt_local, Rx); // Шедевр простоты !!!
 			
 			//--------------------------------------------
 			cli();            // Открываем критическую секцию 
 			for (int w = 0; w < sizeof(R) / sizeof(R[0]);  w++)
- 532:	01 96       	adiw	r24, 0x01	; 1
- 534:	84 30       	cpi	r24, 0x04	; 4
- 536:	91 05       	cpc	r25, r1
- 538:	88 f3       	brcs	.-30     	; 0x51c <__stack+0xbd>
+ 530:	01 96       	adiw	r24, 0x01	; 1
+ 532:	84 30       	cpi	r24, 0x04	; 4
+ 534:	91 05       	cpc	r25, r1
+ 536:	88 f3       	brcs	.-30     	; 0x51a <__stack+0xbb>
 			{
 				R[w] = Rx[w]; // Обновляем Локальную копию массива регистров 
 			}
 			sei();            // Закрываем критическую секцию
- 53a:	78 94       	sei
+ 538:	78 94       	sei
 		}
-		sei();                                     // Закрываем критическую секцию
+		sei();                                          // Закрываем критическую секцию
 		//--------------------------------------------
 		if (update)           // Флаг установлен?
 		{
 			update = false;   // Сбрасывем флаг
- 53c:	90 e0       	ldi	r25, 0x00	; 0
-		}
+ 53a:	90 e0       	ldi	r25, 0x00	; 0
+ 53c:	34 c0       	rjmp	.+104    	; 0x5a6 <__stack+0x147>
+		// Добавил вывод на экран программы и систему ее переключения
+		// Получилось очень растянуто, уверен что можно перепесать более грамотно 
+		
+		for ( ; (klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8); )
+		{
+			if(klik_Up && prog_step < 8)
+ 53e:	11 23       	and	r17, r17
+ 540:	b9 f0       	breq	.+46     	; 0x570 <__stack+0x111>
+ 542:	88 30       	cpi	r24, 0x08	; 8
+ 544:	a8 f4       	brcc	.+42     	; 0x570 <__stack+0x111>
+			{
+				klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать
+				prog_step *= 2;
+ 546:	88 0f       	add	r24, r24
+ 548:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+				R[0] = 'P';
+ 54c:	e1 e6       	ldi	r30, 0x61	; 97
+ 54e:	f0 e0       	ldi	r31, 0x00	; 0
+ 550:	90 e5       	ldi	r25, 0x50	; 80
+ 552:	90 83       	st	Z, r25
+				R[1] = 'r';
+ 554:	92 e7       	ldi	r25, 0x72	; 114
+ 556:	91 83       	std	Z+1, r25	; 0x01
+				R[2] = 'g';
+ 558:	97 e6       	ldi	r25, 0x67	; 103
+ 55a:	92 83       	std	Z+2, r25	; 0x02
+				R[3] = '0' + prog_step;
+ 55c:	80 5d       	subi	r24, 0xD0	; 208
+ 55e:	83 83       	std	Z+3, r24	; 0x03
+ 560:	83 ec       	ldi	r24, 0xC3	; 195
+ 562:	99 e0       	ldi	r25, 0x09	; 9
+ 564:	01 97       	sbiw	r24, 0x01	; 1
+ 566:	f1 f7       	brne	.-4      	; 0x564 <__stack+0x105>
+ 568:	00 c0       	rjmp	.+0      	; 0x56a <__stack+0x10b>
+ 56a:	00 00       	nop
+		
+		for ( ; (klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8); )
+		{
+			if(klik_Up && prog_step < 8)
+			{
+				klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать
+ 56c:	10 e0       	ldi	r17, 0x00	; 0
+				R[0] = 'P';
+				R[1] = 'r';
+				R[2] = 'g';
+				R[3] = '0' + prog_step;
+				_delay_ms(10);
+				update = true; // Принудительно обновляем экран
+ 56e:	91 e0       	ldi	r25, 0x01	; 1
+			}
+			if(klik_Down && prog_step > 2)
+ 570:	00 23       	and	r16, r16
+ 572:	c9 f0       	breq	.+50     	; 0x5a6 <__stack+0x147>
+ 574:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 578:	83 30       	cpi	r24, 0x03	; 3
+ 57a:	a8 f0       	brcs	.+42     	; 0x5a6 <__stack+0x147>
+			{
+				klik_Down = false;
+				prog_step /= 2;
+ 57c:	86 95       	lsr	r24
+ 57e:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+				R[0] = 'P';
+ 582:	e1 e6       	ldi	r30, 0x61	; 97
+ 584:	f0 e0       	ldi	r31, 0x00	; 0
+ 586:	90 e5       	ldi	r25, 0x50	; 80
+ 588:	90 83       	st	Z, r25
+				R[1] = 'r';
+ 58a:	92 e7       	ldi	r25, 0x72	; 114
+ 58c:	91 83       	std	Z+1, r25	; 0x01
+				R[2] = 'g';
+ 58e:	97 e6       	ldi	r25, 0x67	; 103
+ 590:	92 83       	std	Z+2, r25	; 0x02
+				R[3] = '0' + prog_step;
+ 592:	80 5d       	subi	r24, 0xD0	; 208
+ 594:	83 83       	std	Z+3, r24	; 0x03
+ 596:	83 ec       	ldi	r24, 0xC3	; 195
+ 598:	99 e0       	ldi	r25, 0x09	; 9
+ 59a:	01 97       	sbiw	r24, 0x01	; 1
+ 59c:	f1 f7       	brne	.-4      	; 0x59a <__stack+0x13b>
+ 59e:	00 c0       	rjmp	.+0      	; 0x5a0 <__stack+0x141>
+ 5a0:	00 00       	nop
+				_delay_ms(10);
+				update = true; // Принудительно обновляем экран
+			}
+			if(klik_Down && prog_step > 2)
+			{
+				klik_Down = false;
+ 5a2:	00 e0       	ldi	r16, 0x00	; 0
+				R[0] = 'P';
+				R[1] = 'r';
+				R[2] = 'g';
+				R[3] = '0' + prog_step;
+				_delay_ms(10);
+				update = true;
+ 5a4:	91 e0       	ldi	r25, 0x01	; 1
 		
 		//--------------------------------------------
 		// Добавил вывод на экран программы и систему ее переключения
 		// Получилось очень растянуто, уверен что можно перепесать более грамотно 
-		if(klik_Up && prog_step == 2)
- 53e:	ee 20       	and	r14, r14
- 540:	c9 f0       	breq	.+50     	; 0x574 <__stack+0x115>
- 542:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 546:	82 30       	cpi	r24, 0x02	; 2
- 548:	a9 f4       	brne	.+42     	; 0x574 <__stack+0x115>
-		{
-			klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать 
-			prog_step = 4;
- 54a:	84 e0       	ldi	r24, 0x04	; 4
- 54c:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
-			R[0] = 'P';
- 550:	e1 e6       	ldi	r30, 0x61	; 97
- 552:	f0 e0       	ldi	r31, 0x00	; 0
- 554:	80 e5       	ldi	r24, 0x50	; 80
- 556:	80 83       	st	Z, r24
-			R[1] = 'r';
- 558:	82 e7       	ldi	r24, 0x72	; 114
- 55a:	81 83       	std	Z+1, r24	; 0x01
-			R[2] = 'g';
- 55c:	87 e6       	ldi	r24, 0x67	; 103
- 55e:	82 83       	std	Z+2, r24	; 0x02
-			R[3] = '0' + prog_step;
- 560:	84 e3       	ldi	r24, 0x34	; 52
- 562:	83 83       	std	Z+3, r24	; 0x03
- 564:	83 ec       	ldi	r24, 0xC3	; 195
- 566:	99 e0       	ldi	r25, 0x09	; 9
- 568:	01 97       	sbiw	r24, 0x01	; 1
- 56a:	f1 f7       	brne	.-4      	; 0x568 <__stack+0x109>
- 56c:	00 c0       	rjmp	.+0      	; 0x56e <__stack+0x10f>
- 56e:	00 00       	nop
-		//--------------------------------------------
-		// Добавил вывод на экран программы и систему ее переключения
-		// Получилось очень растянуто, уверен что можно перепесать более грамотно 
-		if(klik_Up && prog_step == 2)
-		{
-			klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать 
- 570:	e1 2c       	mov	r14, r1
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true; // Принудительно обновляем экран
- 572:	91 e0       	ldi	r25, 0x01	; 1
-		}
-		if(klik_Up && prog_step == 4)
- 574:	ee 20       	and	r14, r14
- 576:	c9 f0       	breq	.+50     	; 0x5aa <__stack+0x14b>
- 578:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 57c:	84 30       	cpi	r24, 0x04	; 4
- 57e:	a9 f4       	brne	.+42     	; 0x5aa <__stack+0x14b>
-		{
-			klik_Up = false;
-			prog_step = 8;
- 580:	88 e0       	ldi	r24, 0x08	; 8
- 582:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
-			R[0] = 'P';
- 586:	e1 e6       	ldi	r30, 0x61	; 97
- 588:	f0 e0       	ldi	r31, 0x00	; 0
- 58a:	80 e5       	ldi	r24, 0x50	; 80
- 58c:	80 83       	st	Z, r24
-			R[1] = 'r';
- 58e:	82 e7       	ldi	r24, 0x72	; 114
- 590:	81 83       	std	Z+1, r24	; 0x01
-			R[2] = 'g';
- 592:	87 e6       	ldi	r24, 0x67	; 103
- 594:	82 83       	std	Z+2, r24	; 0x02
-			R[3] = '0' + prog_step;
- 596:	88 e3       	ldi	r24, 0x38	; 56
- 598:	83 83       	std	Z+3, r24	; 0x03
- 59a:	83 ec       	ldi	r24, 0xC3	; 195
- 59c:	99 e0       	ldi	r25, 0x09	; 9
- 59e:	01 97       	sbiw	r24, 0x01	; 1
- 5a0:	f1 f7       	brne	.-4      	; 0x59e <__stack+0x13f>
- 5a2:	00 c0       	rjmp	.+0      	; 0x5a4 <__stack+0x145>
- 5a4:	00 00       	nop
-			_delay_ms(10);
-			update = true; // Принудительно обновляем экран
-		}
-		if(klik_Up && prog_step == 4)
-		{
-			klik_Up = false;
- 5a6:	e1 2c       	mov	r14, r1
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
- 5a8:	91 e0       	ldi	r25, 0x01	; 1
-		}
-		if(klik_Down && prog_step == 8)
- 5aa:	ff 20       	and	r15, r15
- 5ac:	c9 f0       	breq	.+50     	; 0x5e0 <__stack+0x181>
- 5ae:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 5b2:	88 30       	cpi	r24, 0x08	; 8
- 5b4:	a9 f4       	brne	.+42     	; 0x5e0 <__stack+0x181>
-		{
-			klik_Down = false;
-			prog_step = 4;
- 5b6:	84 e0       	ldi	r24, 0x04	; 4
- 5b8:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
-			R[0] = 'P';
- 5bc:	e1 e6       	ldi	r30, 0x61	; 97
- 5be:	f0 e0       	ldi	r31, 0x00	; 0
- 5c0:	80 e5       	ldi	r24, 0x50	; 80
- 5c2:	80 83       	st	Z, r24
-			R[1] = 'r';
- 5c4:	82 e7       	ldi	r24, 0x72	; 114
- 5c6:	81 83       	std	Z+1, r24	; 0x01
-			R[2] = 'g';
- 5c8:	87 e6       	ldi	r24, 0x67	; 103
- 5ca:	82 83       	std	Z+2, r24	; 0x02
-			R[3] = '0' + prog_step;
- 5cc:	84 e3       	ldi	r24, 0x34	; 52
- 5ce:	83 83       	std	Z+3, r24	; 0x03
- 5d0:	83 ec       	ldi	r24, 0xC3	; 195
- 5d2:	99 e0       	ldi	r25, 0x09	; 9
- 5d4:	01 97       	sbiw	r24, 0x01	; 1
- 5d6:	f1 f7       	brne	.-4      	; 0x5d4 <__stack+0x175>
- 5d8:	00 c0       	rjmp	.+0      	; 0x5da <__stack+0x17b>
- 5da:	00 00       	nop
-			_delay_ms(10);
-			update = true;
-		}
-		if(klik_Down && prog_step == 8)
-		{
-			klik_Down = false;
- 5dc:	f1 2c       	mov	r15, r1
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
- 5de:	91 e0       	ldi	r25, 0x01	; 1
-		}
-		if(klik_Down && prog_step == 4)
- 5e0:	ff 20       	and	r15, r15
- 5e2:	09 f4       	brne	.+2      	; 0x5e6 <__stack+0x187>
- 5e4:	54 cf       	rjmp	.-344    	; 0x48e <__stack+0x2f>
- 5e6:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 5ea:	84 30       	cpi	r24, 0x04	; 4
- 5ec:	09 f0       	breq	.+2      	; 0x5f0 <__stack+0x191>
- 5ee:	4f cf       	rjmp	.-354    	; 0x48e <__stack+0x2f>
-		{
-			klik_Down = false;
-			prog_step = 2;
- 5f0:	82 e0       	ldi	r24, 0x02	; 2
- 5f2:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
-			R[0] = 'P';
- 5f6:	e1 e6       	ldi	r30, 0x61	; 97
- 5f8:	f0 e0       	ldi	r31, 0x00	; 0
- 5fa:	80 e5       	ldi	r24, 0x50	; 80
- 5fc:	80 83       	st	Z, r24
-			R[1] = 'r';
- 5fe:	82 e7       	ldi	r24, 0x72	; 114
- 600:	81 83       	std	Z+1, r24	; 0x01
-			R[2] = 'g';
- 602:	87 e6       	ldi	r24, 0x67	; 103
- 604:	82 83       	std	Z+2, r24	; 0x02
-			R[3] = '0' + prog_step;
- 606:	82 e3       	ldi	r24, 0x32	; 50
- 608:	83 83       	std	Z+3, r24	; 0x03
- 60a:	83 ec       	ldi	r24, 0xC3	; 195
- 60c:	99 e0       	ldi	r25, 0x09	; 9
- 60e:	01 97       	sbiw	r24, 0x01	; 1
- 610:	f1 f7       	brne	.-4      	; 0x60e <__stack+0x1af>
- 612:	00 c0       	rjmp	.+0      	; 0x614 <__stack+0x1b5>
- 614:	00 00       	nop
-			_delay_ms(10);
-			update = true;
-		}
-		if(klik_Down && prog_step == 4)
-		{
-			klik_Down = false;
- 616:	f1 2c       	mov	r15, r1
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
- 618:	91 e0       	ldi	r25, 0x01	; 1
- 61a:	39 cf       	rjmp	.-398    	; 0x48e <__stack+0x2f>
+		
+		for ( ; (klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8); )
+ 5a6:	11 11       	cpse	r17, r1
+ 5a8:	03 c0       	rjmp	.+6      	; 0x5b0 <__stack+0x151>
+ 5aa:	00 23       	and	r16, r16
+ 5ac:	09 f4       	brne	.+2      	; 0x5b0 <__stack+0x151>
+ 5ae:	6f cf       	rjmp	.-290    	; 0x48e <__stack+0x2f>
+ 5b0:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 5b4:	82 30       	cpi	r24, 0x02	; 2
+ 5b6:	19 f2       	breq	.-122    	; 0x53e <__stack+0xdf>
+ 5b8:	84 30       	cpi	r24, 0x04	; 4
+ 5ba:	09 f2       	breq	.-126    	; 0x53e <__stack+0xdf>
+ 5bc:	88 30       	cpi	r24, 0x08	; 8
+ 5be:	09 f4       	brne	.+2      	; 0x5c2 <__stack+0x163>
+ 5c0:	be cf       	rjmp	.-132    	; 0x53e <__stack+0xdf>
+ 5c2:	65 cf       	rjmp	.-310    	; 0x48e <__stack+0x2f>
 
-0000061c <__divmodhi4>:
- 61c:	97 fb       	bst	r25, 7
- 61e:	07 2e       	mov	r0, r23
- 620:	16 f4       	brtc	.+4      	; 0x626 <__divmodhi4+0xa>
- 622:	00 94       	com	r0
- 624:	06 d0       	rcall	.+12     	; 0x632 <__divmodhi4_neg1>
- 626:	77 fd       	sbrc	r23, 7
- 628:	08 d0       	rcall	.+16     	; 0x63a <__divmodhi4_neg2>
- 62a:	17 d0       	rcall	.+46     	; 0x65a <__udivmodhi4>
- 62c:	07 fc       	sbrc	r0, 7
- 62e:	05 d0       	rcall	.+10     	; 0x63a <__divmodhi4_neg2>
- 630:	3e f4       	brtc	.+14     	; 0x640 <__divmodhi4_exit>
+000005c4 <__divmodhi4>:
+ 5c4:	97 fb       	bst	r25, 7
+ 5c6:	07 2e       	mov	r0, r23
+ 5c8:	16 f4       	brtc	.+4      	; 0x5ce <__divmodhi4+0xa>
+ 5ca:	00 94       	com	r0
+ 5cc:	06 d0       	rcall	.+12     	; 0x5da <__divmodhi4_neg1>
+ 5ce:	77 fd       	sbrc	r23, 7
+ 5d0:	08 d0       	rcall	.+16     	; 0x5e2 <__divmodhi4_neg2>
+ 5d2:	17 d0       	rcall	.+46     	; 0x602 <__udivmodhi4>
+ 5d4:	07 fc       	sbrc	r0, 7
+ 5d6:	05 d0       	rcall	.+10     	; 0x5e2 <__divmodhi4_neg2>
+ 5d8:	3e f4       	brtc	.+14     	; 0x5e8 <__divmodhi4_exit>
 
-00000632 <__divmodhi4_neg1>:
- 632:	90 95       	com	r25
- 634:	81 95       	neg	r24
- 636:	9f 4f       	sbci	r25, 0xFF	; 255
- 638:	08 95       	ret
+000005da <__divmodhi4_neg1>:
+ 5da:	90 95       	com	r25
+ 5dc:	81 95       	neg	r24
+ 5de:	9f 4f       	sbci	r25, 0xFF	; 255
+ 5e0:	08 95       	ret
 
-0000063a <__divmodhi4_neg2>:
- 63a:	70 95       	com	r23
- 63c:	61 95       	neg	r22
- 63e:	7f 4f       	sbci	r23, 0xFF	; 255
+000005e2 <__divmodhi4_neg2>:
+ 5e2:	70 95       	com	r23
+ 5e4:	61 95       	neg	r22
+ 5e6:	7f 4f       	sbci	r23, 0xFF	; 255
 
-00000640 <__divmodhi4_exit>:
- 640:	08 95       	ret
+000005e8 <__divmodhi4_exit>:
+ 5e8:	08 95       	ret
 
-00000642 <__umulhisi3>:
- 642:	a2 9f       	mul	r26, r18
- 644:	b0 01       	movw	r22, r0
- 646:	b3 9f       	mul	r27, r19
- 648:	c0 01       	movw	r24, r0
- 64a:	a3 9f       	mul	r26, r19
- 64c:	01 d0       	rcall	.+2      	; 0x650 <__umulhisi3+0xe>
- 64e:	b2 9f       	mul	r27, r18
- 650:	70 0d       	add	r23, r0
- 652:	81 1d       	adc	r24, r1
- 654:	11 24       	eor	r1, r1
- 656:	91 1d       	adc	r25, r1
- 658:	08 95       	ret
+000005ea <__umulhisi3>:
+ 5ea:	a2 9f       	mul	r26, r18
+ 5ec:	b0 01       	movw	r22, r0
+ 5ee:	b3 9f       	mul	r27, r19
+ 5f0:	c0 01       	movw	r24, r0
+ 5f2:	a3 9f       	mul	r26, r19
+ 5f4:	01 d0       	rcall	.+2      	; 0x5f8 <__umulhisi3+0xe>
+ 5f6:	b2 9f       	mul	r27, r18
+ 5f8:	70 0d       	add	r23, r0
+ 5fa:	81 1d       	adc	r24, r1
+ 5fc:	11 24       	eor	r1, r1
+ 5fe:	91 1d       	adc	r25, r1
+ 600:	08 95       	ret
 
-0000065a <__udivmodhi4>:
- 65a:	aa 1b       	sub	r26, r26
- 65c:	bb 1b       	sub	r27, r27
- 65e:	51 e1       	ldi	r21, 0x11	; 17
- 660:	07 c0       	rjmp	.+14     	; 0x670 <__udivmodhi4_ep>
+00000602 <__udivmodhi4>:
+ 602:	aa 1b       	sub	r26, r26
+ 604:	bb 1b       	sub	r27, r27
+ 606:	51 e1       	ldi	r21, 0x11	; 17
+ 608:	07 c0       	rjmp	.+14     	; 0x618 <__udivmodhi4_ep>
 
-00000662 <__udivmodhi4_loop>:
- 662:	aa 1f       	adc	r26, r26
- 664:	bb 1f       	adc	r27, r27
- 666:	a6 17       	cp	r26, r22
- 668:	b7 07       	cpc	r27, r23
- 66a:	10 f0       	brcs	.+4      	; 0x670 <__udivmodhi4_ep>
- 66c:	a6 1b       	sub	r26, r22
- 66e:	b7 0b       	sbc	r27, r23
+0000060a <__udivmodhi4_loop>:
+ 60a:	aa 1f       	adc	r26, r26
+ 60c:	bb 1f       	adc	r27, r27
+ 60e:	a6 17       	cp	r26, r22
+ 610:	b7 07       	cpc	r27, r23
+ 612:	10 f0       	brcs	.+4      	; 0x618 <__udivmodhi4_ep>
+ 614:	a6 1b       	sub	r26, r22
+ 616:	b7 0b       	sbc	r27, r23
 
-00000670 <__udivmodhi4_ep>:
- 670:	88 1f       	adc	r24, r24
- 672:	99 1f       	adc	r25, r25
- 674:	5a 95       	dec	r21
- 676:	a9 f7       	brne	.-22     	; 0x662 <__udivmodhi4_loop>
- 678:	80 95       	com	r24
- 67a:	90 95       	com	r25
- 67c:	bc 01       	movw	r22, r24
- 67e:	cd 01       	movw	r24, r26
- 680:	08 95       	ret
+00000618 <__udivmodhi4_ep>:
+ 618:	88 1f       	adc	r24, r24
+ 61a:	99 1f       	adc	r25, r25
+ 61c:	5a 95       	dec	r21
+ 61e:	a9 f7       	brne	.-22     	; 0x60a <__udivmodhi4_loop>
+ 620:	80 95       	com	r24
+ 622:	90 95       	com	r25
+ 624:	bc 01       	movw	r22, r24
+ 626:	cd 01       	movw	r24, r26
+ 628:	08 95       	ret
 
-00000682 <_exit>:
- 682:	f8 94       	cli
+0000062a <_exit>:
+ 62a:	f8 94       	cli
 
-00000684 <__stop_program>:
- 684:	ff cf       	rjmp	.-2      	; 0x684 <__stop_program>
+0000062c <__stop_program>:
+ 62c:	ff cf       	rjmp	.-2      	; 0x62c <__stop_program>

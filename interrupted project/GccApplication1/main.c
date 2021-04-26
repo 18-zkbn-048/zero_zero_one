@@ -11,7 +11,7 @@ unsigned char n_count=0;
 uint8_t consider_Up = 0;   // Для подсчета звона кнопки
 uint8_t consider_Down = 0; // Для подсчета звона кнопки
 uint8_t prog_step = 2;     // Шаг подсчета  
-const uint8_t bounce = 50; // Значение дребезга кнопки, можно править и подбирать !
+const uint8_t bounce = 30; // Значение дребезга кнопки, можно править и подбирать !
 
 // Учим зажигать цифры и буквы
 void segchar(unsigned char ch)
@@ -206,21 +206,21 @@ int main(void)
 		sei();                // Закрываем критическую секцию
 		
 		//--------------------------------------------
-		cli();                                     // Открываем критическую секцию
+		cli();                                          // Открываем критическую секцию
 		if (consider_Down == bounce) klik_Down = true;  // Будем считать что кнопка нажата 
 		else 
 		{
-		if (consider_Down == 0) klik_Down = false; // Кнопка не тронута 	
+		if (consider_Down == 0) klik_Down = false;      // Кнопка не тронута 	
 		}
-		sei();                                     // Закрываем критическую секцию
+		sei();                                          // Закрываем критическую секцию
 		//--------------------------------------------
-		cli();                                     // Открываем критическую секцию
-		if (consider_Up == bounce) klik_Up = true;     // Будем считать что кнопка нажата
+		cli();                                          // Открываем критическую секцию
+		if (consider_Up == bounce) klik_Up = true;      // Будем считать что кнопка нажата
 		else
 		{
-			if (consider_Up == 0) klik_Up = false; // Кнопка не тронута
+			if (consider_Up == 0) klik_Up = false;      // Кнопка не тронута
 		}
-		sei();                                     // Закрываем критическую секцию
+		sei();                                          // Закрываем критическую секцию
 		//--------------------------------------------
 		if (update)           // Флаг установлен?
 		{
@@ -245,50 +245,79 @@ int main(void)
 		//--------------------------------------------
 		// Добавил вывод на экран программы и систему ее переключения
 		// Получилось очень растянуто, уверен что можно перепесать более грамотно 
-		if(klik_Up && prog_step == 2)
+		
+		for ( ; (klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8); )
 		{
-			klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать 
-			prog_step = 4;
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true; // Принудительно обновляем экран
+			if(klik_Up && prog_step < 8)
+			{
+				klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать
+				prog_step *= 2;
+				R[0] = 'P';
+				R[1] = 'r';
+				R[2] = 'g';
+				R[3] = '0' + prog_step;
+				_delay_ms(10);
+				update = true; // Принудительно обновляем экран
+			}
+			if(klik_Down && prog_step > 2)
+			{
+				klik_Down = false;
+				prog_step /= 2;
+				R[0] = 'P';
+				R[1] = 'r';
+				R[2] = 'g';
+				R[3] = '0' + prog_step;
+				_delay_ms(10);
+				update = true;
+			}
+			
+			
 		}
-		if(klik_Up && prog_step == 4)
-		{
-			klik_Up = false;
-			prog_step = 8;
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
-		}
-		if(klik_Down && prog_step == 8)
-		{
-			klik_Down = false;
-			prog_step = 4;
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
-		}
-		if(klik_Down && prog_step == 4)
-		{
-			klik_Down = false;
-			prog_step = 2;
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
-		}
+		
+// 		if(klik_Up && prog_step == 2)
+// 		{
+// 			klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать 
+// 			prog_step = 4;
+// 			R[0] = 'P';
+// 			R[1] = 'r';
+// 			R[2] = 'g';
+// 			R[3] = '0' + prog_step;
+// 			_delay_ms(10);
+// 			update = true; // Принудительно обновляем экран
+// 		}
+// 		if(klik_Up && prog_step == 4)
+// 		{
+// 			klik_Up = false;
+// 			prog_step = 8;
+// 			R[0] = 'P';
+// 			R[1] = 'r';
+// 			R[2] = 'g';
+// 			R[3] = '0' + prog_step;
+// 			_delay_ms(10);
+// 			update = true;
+// 		}
+// 		if(klik_Down && prog_step == 8)
+// 		{
+// 			klik_Down = false;
+// 			prog_step = 4;
+// 			R[0] = 'P';
+// 			R[1] = 'r';
+// 			R[2] = 'g';
+// 			R[3] = '0' + prog_step;
+// 			_delay_ms(10);
+// 			update = true;
+// 		}
+// 		if(klik_Down && prog_step == 4)
+// 		{
+// 			klik_Down = false;
+// 			prog_step = 2;
+// 			R[0] = 'P';
+// 			R[1] = 'r';
+// 			R[2] = 'g';
+// 			R[3] = '0' + prog_step;
+// 			_delay_ms(10);
+// 			update = true;
+// 		}
 		//--------------------------------------------
 		// работает не плохо задержка слишком большая 
 		//_delay_ms(1); // Не стоит обновлять дисплей слишком часто.
