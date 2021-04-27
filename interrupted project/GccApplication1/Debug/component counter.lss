@@ -1003,7 +1003,7 @@ int main(void)
 		// Добавил вывод на экран программы и систему ее переключения
 		// Получилось очень растянуто, уверен что можно перепесать более грамотно 
 		
-		for ( ; (klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8); )
+		while ((klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8))
 		{
 			if(klik_Up && prog_step < 8)
  53e:	11 23       	and	r17, r17
@@ -1036,7 +1036,7 @@ int main(void)
  568:	00 c0       	rjmp	.+0      	; 0x56a <__stack+0x10b>
  56a:	00 00       	nop
 		
-		for ( ; (klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8); )
+		while ((klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8))
 		{
 			if(klik_Up && prog_step < 8)
 			{
@@ -1100,7 +1100,7 @@ int main(void)
 		// Добавил вывод на экран программы и систему ее переключения
 		// Получилось очень растянуто, уверен что можно перепесать более грамотно 
 		
-		for ( ; (klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8); )
+		while ((klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8))
  5a6:	11 11       	cpse	r17, r1
  5a8:	03 c0       	rjmp	.+6      	; 0x5b0 <__stack+0x151>
  5aa:	00 23       	and	r16, r16
