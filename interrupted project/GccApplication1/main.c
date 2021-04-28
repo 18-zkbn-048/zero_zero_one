@@ -8,10 +8,10 @@
 unsigned char R[4] = {'s','t','A','r'}; 
 volatile short cnt=0;                   
 unsigned char n_count=0;
-uint8_t consider_Up = 0;   // Для подсчета звона кнопки
-uint8_t consider_Down = 0; // Для подсчета звона кнопки
-uint8_t prog_step = 2;     // Шаг подсчета  
-const uint8_t bounce = 30; // Значение дребезга кнопки, можно править и подбирать !
+volatile short consider_Up = 0;   // Для подсчета звона кнопки
+volatile short consider_Down = 0; // Для подсчета звона кнопки
+uint8_t prog_step = 2;            // Шаг подсчета  
+volatile short bounce = 500;      // Значение дребезга кнопки, можно править и подбирать !
 
 // Учим зажигать цифры и буквы
 void segchar(unsigned char ch)
@@ -177,6 +177,7 @@ int main(void)
 	bool update;            // Флаг перерисовки дисплея
 	bool klik_Down = false; // Состаяние кнопки Down
 	bool klik_Up = false;   // Состаяние кнопки Up
+	bool update_cnt = false;// Флаг пересчета 
 	DDRC  &= ~0b00110000;   // Вход энкодера и кнопки
 	PORTC |=  0b00110000;   // Подтяжка
 	DDRD  &= ~0b00010000;   // Кнопка сброса
@@ -196,12 +197,14 @@ int main(void)
 	while(1)
 	{
 		cli();                // Открываем критическую секцию 
-		if (cnt_local != cnt) // Если счетчик изменился?
+		if (cnt_local != cnt || update_cnt) // Если счетчик изменился?
 		{
 			// Обновляем Локальную копию счетчика + шаг программы 
 			if (prog_step > 2) cnt_local = cnt / (prog_step / 2); 
+			// по факту один подсчет экодера уже равен 2 и по этому prog_step / 2, чтобы получилось 1,2,4
 			else cnt_local = cnt;
-			update = true;    // Устанавливаем флаг перерисовки дисплея
+			update = true;      // Устанавливаем флаг перерисовки дисплея
+			update_cnt = false; // Сбросим флаг пересчета 
 		}
 		sei();                // Закрываем критическую секцию
 		
@@ -246,78 +249,49 @@ int main(void)
 		// Добавил вывод на экран программы и систему ее переключения
 		// Получилось очень растянуто, уверен что можно перепесать более грамотно 
 		
-		while ((klik_Up || klik_Down) && (prog_step == 2 || prog_step == 4 || prog_step == 8))
+		if(klik_Up && prog_step < 8)
 		{
-			if(klik_Up && prog_step < 8)
-			{
-				klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать
-				prog_step *= 2;
-				R[0] = 'P';
-				R[1] = 'r';
-				R[2] = 'g';
-				R[3] = '0' + prog_step;
-				_delay_ms(10);
-				update = true; // Принудительно обновляем экран
-			}
-			if(klik_Down && prog_step > 2)
-			{
-				klik_Down = false;
-				prog_step /= 2;
-				R[0] = 'P';
-				R[1] = 'r';
-				R[2] = 'g';
-				R[3] = '0' + prog_step;
-				_delay_ms(10);
-				update = true;
-			}
-			
-			
+			klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать
+			prog_step *= 2;
+			R[0] = 'P';
+			R[1] = 'r';
+			R[2] = ' ';
+			R[3] = '0' + prog_step;
+			_delay_ms(7);
+			update_cnt = true; // Принудительно сделаем пересчет и выведем 
+		}
+		if(klik_Down && prog_step > 2)
+		{
+			klik_Down = false;
+			prog_step /= 2;
+			R[0] = 'P';
+			R[1] = 'r';
+			R[2] = ' ';
+			R[3] = '0' + prog_step;
+			_delay_ms(7);
+			update_cnt = true;
+		}
+		if(klik_Up && prog_step == 8)
+		{
+			klik_Up = false; 
+			R[0] = 'P';
+			R[1] = 'r';
+			R[2] = ' ';
+			R[3] = '0' + prog_step;
+			_delay_ms(7);
+			update_cnt = true; 
+		}
+		if(klik_Down && prog_step == 2)
+		{
+			klik_Down = false;
+			R[0] = 'P';
+			R[1] = 'r';
+			R[2] = ' ';
+			R[3] = '0' + prog_step;
+			_delay_ms(7);
+			update_cnt = true;
 		}
 		
-// 		if(klik_Up && prog_step == 2)
-// 		{
-// 			klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать 
-// 			prog_step = 4;
-// 			R[0] = 'P';
-// 			R[1] = 'r';
-// 			R[2] = 'g';
-// 			R[3] = '0' + prog_step;
-// 			_delay_ms(10);
-// 			update = true; // Принудительно обновляем экран
-// 		}
-// 		if(klik_Up && prog_step == 4)
-// 		{
-// 			klik_Up = false;
-// 			prog_step = 8;
-// 			R[0] = 'P';
-// 			R[1] = 'r';
-// 			R[2] = 'g';
-// 			R[3] = '0' + prog_step;
-// 			_delay_ms(10);
-// 			update = true;
-// 		}
-// 		if(klik_Down && prog_step == 8)
-// 		{
-// 			klik_Down = false;
-// 			prog_step = 4;
-// 			R[0] = 'P';
-// 			R[1] = 'r';
-// 			R[2] = 'g';
-// 			R[3] = '0' + prog_step;
-// 			_delay_ms(10);
-// 			update = true;
-// 		}
-// 		if(klik_Down && prog_step == 4)
-// 		{
-// 			klik_Down = false;
-// 			prog_step = 2;
-// 			R[0] = 'P';
-// 			R[1] = 'r';
-// 			R[2] = 'g';
-// 			R[3] = '0' + prog_step;
-// 			_delay_ms(10);
-// 			update = true;
-// 		}
 		//--------------------------------------------
 		//_delay_ms(1); // Не стоит обновлять дисплей слишком часто.
 	}
