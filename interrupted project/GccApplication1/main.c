@@ -5,7 +5,14 @@
 #include <util/delay.h>
 #include <stdint.h>
 //--------------------------------------------
-unsigned char R[4] = {'s','t','A','r'}; 
+unsigned char R[4]; // Массив под индикатор 
+
+/*
+Массив для бегущей строки (можно менять!), 
+первые 3 символа надо ставить пробел или иной символ!
+*/	
+unsigned char ticker[] = {'-','-','-','s','t','A','r','t'}; 
+	
 volatile short cnt=0;                   
 unsigned char n_count=0;
 volatile short consider_Up = 0;   // Для подсчета звона кнопки
@@ -190,8 +197,17 @@ int main(void)
 	timer_ini();
 	turnoffall();
 	//--------------------------------------------
-	sei();                // Разрешаем прерывания. Это важно!
-	_delay_ms(10);        // Задержка на вывод заставки
+	sei(); // Разрешаем прерывания. Это важно!
+	
+	// Приветствие бегушей строкой 
+	for (uint8_t n = 0; n < sizeof(ticker) / sizeof(ticker[0]); n++)
+	{
+		R[0] = ticker[n];
+		R[1] = ticker[n + 1 >= (sizeof(ticker) / sizeof(ticker[0]) -3) ? 0 : n + 1];
+		R[2] = ticker[n + 2 >= (sizeof(ticker) / sizeof(ticker[0]) -3) ? 0 : n + 2];
+		R[3] = ticker[n + 3 >= (sizeof(ticker) / sizeof(ticker[0]) -3) ? 0 : n + 3];
+		_delay_ms(3);
+	}
 	update = true;        // Принудительно обновим дисплей в первый раз
 	//--------------------------------------------	
 	while(1)
