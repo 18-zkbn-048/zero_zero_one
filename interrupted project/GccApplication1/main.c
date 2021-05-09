@@ -5,13 +5,20 @@
 #include <util/delay.h>
 #include <stdint.h>
 //--------------------------------------------
-unsigned char R[4] = {'s','t','A','r'}; 
+unsigned char R[4]; // Массив под индикатор 
+
+/*
+Массив для бегущей строки (можно менять!), 
+первые 3 символа надо ставить пробел или иной символ!
+*/	
+unsigned char ticker[] = {'-','-','-','s','t','A','r','t'}; 
+	
 volatile short cnt=0;                   
 unsigned char n_count=0;
-uint8_t consider_Up = 0;   // Для подсчета звона кнопки
-uint8_t consider_Down = 0; // Для подсчета звона кнопки
-uint8_t prog_step = 2;     // Шаг подсчета  
-const uint8_t bounce = 50; // Значение дребезга кнопки, можно править и подбирать !
+volatile short consider_Up = 0;   // Для подсчета звона кнопки
+volatile short consider_Down = 0; // Для подсчета звона кнопки
+uint8_t prog_step = 2;            // Шаг подсчета  
+volatile short bounce = 500;      // Значение дребезга кнопки, можно править и подбирать !
 
 // Учим зажигать цифры и буквы
 void segchar(unsigned char ch)
@@ -177,6 +184,7 @@ int main(void)
 	bool update;            // Флаг перерисовки дисплея
 	bool klik_Down = false; // Состаяние кнопки Down
 	bool klik_Up = false;   // Состаяние кнопки Up
+	bool update_cnt = false;// Флаг пересчета 
 	DDRC  &= ~0b00110000;   // Вход энкодера и кнопки
 	PORTC |=  0b00110000;   // Подтяжка
 	DDRD  &= ~0b00010000;   // Кнопка сброса
@@ -189,38 +197,49 @@ int main(void)
 	timer_ini();
 	turnoffall();
 	//--------------------------------------------
-	sei();                // Разрешаем прерывания. Это важно!
-	_delay_ms(10);        // Задержка на вывод заставки
+	sei(); // Разрешаем прерывания. Это важно!
+	
+	// Приветствие бегушей строкой 
+	for (uint8_t n = 0; n < sizeof(ticker) / sizeof(ticker[0]); n++)
+	{
+		R[0] = ticker[n];
+		R[1] = ticker[n + 1 >= (sizeof(ticker) / sizeof(ticker[0]) -3) ? 0 : n + 1];
+		R[2] = ticker[n + 2 >= (sizeof(ticker) / sizeof(ticker[0]) -3) ? 0 : n + 2];
+		R[3] = ticker[n + 3 >= (sizeof(ticker) / sizeof(ticker[0]) -3) ? 0 : n + 3];
+		_delay_ms(3);
+	}
 	update = true;        // Принудительно обновим дисплей в первый раз
 	//--------------------------------------------	
 	while(1)
 	{
 		cli();                // Открываем критическую секцию 
-		if (cnt_local != cnt) // Если счетчик изменился?
+		if (cnt_local != cnt || update_cnt) // Если счетчик изменился?
 		{
 			// Обновляем Локальную копию счетчика + шаг программы 
 			if (prog_step > 2) cnt_local = cnt / (prog_step / 2); 
+			// по факту один подсчет экодера уже равен 2 и по этому prog_step / 2, чтобы получилось 1,2,4
 			else cnt_local = cnt;
-			update = true;    // Устанавливаем флаг перерисовки дисплея
+			update = true;      // Устанавливаем флаг перерисовки дисплея
+			update_cnt = false; // Сбросим флаг пересчета 
 		}
 		sei();                // Закрываем критическую секцию
 		
 		//--------------------------------------------
-		cli();                                     // Открываем критическую секцию
+		cli();                                          // Открываем критическую секцию
 		if (consider_Down == bounce) klik_Down = true;  // Будем считать что кнопка нажата 
 		else 
 		{
-		if (consider_Down == 0) klik_Down = false; // Кнопка не тронута 	
+		if (consider_Down == 0) klik_Down = false;      // Кнопка не тронута 	
 		}
-		sei();                                     // Закрываем критическую секцию
+		sei();                                          // Закрываем критическую секцию
 		//--------------------------------------------
-		cli();                                     // Открываем критическую секцию
-		if (consider_Up == bounce) klik_Up = true;     // Будем считать что кнопка нажата
+		cli();                                          // Открываем критическую секцию
+		if (consider_Up == bounce) klik_Up = true;      // Будем считать что кнопка нажата
 		else
 		{
-			if (consider_Up == 0) klik_Up = false; // Кнопка не тронута
+			if (consider_Up == 0) klik_Up = false;      // Кнопка не тронута
 		}
-		sei();                                     // Закрываем критическую секцию
+		sei();                                          // Закрываем критическую секцию
 		//--------------------------------------------
 		if (update)           // Флаг установлен?
 		{
@@ -245,52 +264,51 @@ int main(void)
 		//--------------------------------------------
 		// Добавил вывод на экран программы и систему ее переключения
 		// Получилось очень растянуто, уверен что можно перепесать более грамотно 
-		if(klik_Up && prog_step == 2)
+		
+		if(klik_Up && prog_step < 8)
 		{
-			klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать 
-			prog_step = 4;
+			klik_Up = false; // Сбрасываем флаг, иначи не прекрашает переключать
+			prog_step *= 2;
 			R[0] = 'P';
 			R[1] = 'r';
-			R[2] = 'g';
+			R[2] = ' ';
 			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true; // Принудительно обновляем экран
+			_delay_ms(7);
+			update_cnt = true; // Принудительно сделаем пересчет и выведем 
 		}
-		if(klik_Up && prog_step == 4)
-		{
-			klik_Up = false;
-			prog_step = 8;
-			R[0] = 'P';
-			R[1] = 'r';
-			R[2] = 'g';
-			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
-		}
-		if(klik_Down && prog_step == 8)
+		if(klik_Down && prog_step > 2)
 		{
 			klik_Down = false;
-			prog_step = 4;
+			prog_step /= 2;
 			R[0] = 'P';
 			R[1] = 'r';
-			R[2] = 'g';
+			R[2] = ' ';
 			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
+			_delay_ms(7);
+			update_cnt = true;
 		}
-		if(klik_Down && prog_step == 4)
+		if(klik_Up && prog_step == 8)
+		{
+			klik_Up = false; 
+			R[0] = 'P';
+			R[1] = 'r';
+			R[2] = ' ';
+			R[3] = '0' + prog_step;
+			_delay_ms(7);
+			update_cnt = true; 
+		}
+		if(klik_Down && prog_step == 2)
 		{
 			klik_Down = false;
-			prog_step = 2;
 			R[0] = 'P';
 			R[1] = 'r';
-			R[2] = 'g';
+			R[2] = ' ';
 			R[3] = '0' + prog_step;
-			_delay_ms(10);
-			update = true;
+			_delay_ms(7);
+			update_cnt = true;
 		}
+		
 		//--------------------------------------------
-		// работает не плохо задержка слишком большая 
 		//_delay_ms(1); // Не стоит обновлять дисплей слишком часто.
 	}
 }
