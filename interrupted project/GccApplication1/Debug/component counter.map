@@ -5,27 +5,31 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_copy_data.o)
-                              main.o (__do_copy_data)
+                              disp.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_clear_bss.o)
-                              main.o (__do_clear_bss)
+                              disp.o (__do_clear_bss)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_umulhisi3.o)
-                              main.o (__umulhisi3)
+                              disp.o (__umulhisi3)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodhi4.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o) (__udivmodhi4)
 
 Allocating common symbols
 Common symbol       size              file
 
-R                   0x4               main.o
+R                   0x4               disp.o
+update              0x1               disp.o
 
 Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o
+ .text          0x00000000        0x0 disp.o
+ .data          0x00000000        0x0 disp.o
+ .bss           0x00000000        0x0 disp.o
+ .avr.prop      0x00000000       0x16 disp.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .avr.prop      0x00000000       0x16 main.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
@@ -132,6 +136,7 @@ user_signatures  0x00850000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o
+LOAD disp.o
 LOAD main.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr4\libm.a
@@ -242,7 +247,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x77a
+.text           0x00000000      0x7a4
  *(.vectors)
  .vectors       0x00000000       0x26 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o
                 0x00000000                __vector_default
@@ -250,7 +255,7 @@ END GROUP
  *(.vectors)
  *(.progmem.gcc*)
  .progmem.gcc_sw_table.segchar
-                0x00000026       0xb6 main.o
+                0x00000026       0xb6 disp.o
                 0x000000dc                . = ALIGN (0x2)
                 0x000000dc                __trampolines_start = .
  *(.trampolines)
@@ -313,7 +318,6 @@ END GROUP
                 0x00000112                __vector_7
                 0x00000112                __vector_5
                 0x00000112                __vector_4
-                0x00000112                __vector_9
                 0x00000112                __vector_2
                 0x00000112                __vector_15
                 0x00000112                __vector_8
@@ -323,41 +327,50 @@ END GROUP
                 0x00000112                __vector_18
                 0x00000114                . = ALIGN (0x2)
  *(.text.*)
- .text.segchar  0x00000114       0xfe main.o
-                0x00000114                segchar
+ .text.segchar  0x00000114      0x104 disp.o
  .text.turnoffall
-                0x00000212       0x14 main.o
-                0x00000212                turnoffall
- .text.turnon   0x00000226       0x48 main.o
-                0x00000226                turnon
+                0x00000218        0xc disp.o
+ .text.turnon   0x00000224       0x48 disp.o
+ .text.P        0x0000026c        0x8 disp.o
+ .text.disp_init
+                0x00000274       0x20 disp.o
+                0x00000274                disp_init
+ .text.__vector_9
+                0x00000294      0x116 disp.o
+                0x00000294                __vector_9
+ .text.disp_out
+                0x000003aa       0xaa disp.o
+                0x000003aa                disp_out
+ .text.ledprintRun
+                0x00000454       0xa2 disp.o
+                0x00000454                ledprintRun
+ .text.buttons_ringing
+                0x000004f6       0x4a disp.o
+                0x000004f6                buttons_ringing
  .text.timer_ini
-                0x0000026e       0x1a main.o
-                0x0000026e                timer_ini
+                0x00000540       0x1a main.o
+ .text.Prog_print.1763
+                0x0000055a       0x54 main.o
  .text.__vector_6
-                0x00000288      0x176 main.o
-                0x00000288                __vector_6
- .text.P        0x000003fe        0x8 main.o
-                0x000003fe                P
- .text.ledprint
-                0x00000406       0x88 main.o
-                0x00000406                ledprint
- .text.main     0x0000048e      0x282 main.o
-                0x0000048e                main
+                0x000005ae       0x92 main.o
+                0x000005ae                __vector_6
+ .text.main     0x00000640       0xfa main.o
+                0x00000640                main
  .text.libgcc.div
-                0x00000710       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
-                0x00000710                _div
-                0x00000710                __divmodhi4
+                0x0000073a       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_divmodhi4.o)
+                0x0000073a                _div
+                0x0000073a                __divmodhi4
  .text.libgcc.mul
-                0x00000736       0x18 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_umulhisi3.o)
-                0x00000736                __umulhisi3
+                0x00000760       0x18 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_umulhisi3.o)
+                0x00000760                __umulhisi3
  .text.libgcc.div
-                0x0000074e       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodhi4.o)
-                0x0000074e                __udivmodhi4
-                0x00000776                . = ALIGN (0x2)
+                0x00000778       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_udivmodhi4.o)
+                0x00000778                __udivmodhi4
+                0x000007a0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000776        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
-                0x00000776                _exit
-                0x00000776                exit
+ .fini9         0x000007a0        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+                0x000007a0                _exit
+                0x000007a0                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -376,58 +389,64 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000776        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
+ .fini0         0x000007a0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000077a                _etext = .
+                0x000007a4                _etext = .
 
-.data           0x00800060        0xc load address 0x0000077a
+.data           0x00800060       0x1c load address 0x000007a4
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.bounce   0x00800060        0x2 main.o
-                0x00800060                bounce
+ .data.retention
+                0x00800060        0x1 disp.o
+                0x00800060                retention
+ .data.bounce   0x00800061        0x2 disp.o
+ .data.Rp.1765  0x00800063        0x4 main.o
  .data.prog_step
-                0x00800062        0x1 main.o
-                0x00800062                prog_step
- .data.ticker   0x00800063        0x8 main.o
-                0x00800063                ticker
+                0x00800067        0x1 main.o
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
+ .rodata.ticker
+                0x00800068       0x13 disp.o
  *(.gnu.linkonce.r*)
-                0x0080006c                . = ALIGN (0x2)
- *fill*         0x0080006b        0x1 
-                0x0080006c                _edata = .
-                0x0080006c                PROVIDE (__data_end, .)
+                0x0080007c                . = ALIGN (0x2)
+ *fill*         0x0080007b        0x1 
+                0x0080007c                _edata = .
+                0x0080007c                PROVIDE (__data_end, .)
 
-.bss            0x0080006c        0xc
-                0x0080006c                PROVIDE (__bss_start, .)
+.bss            0x0080007c       0x17
+                0x0080007c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.old_state.1798
-                0x0080006c        0x1 main.o
+ .bss.Rj.1826   0x0080007c        0x4 disp.o
+ .bss.Rl.1814   0x00800080        0x4 disp.o
+ .bss.n_count   0x00800084        0x1 disp.o
+ .bss.klik_Up   0x00800085        0x1 disp.o
+                0x00800085                klik_Up
+ .bss.klik_Down
+                0x00800086        0x1 disp.o
+                0x00800086                klik_Down
  .bss.consider_Down
-                0x0080006d        0x2 main.o
-                0x0080006d                consider_Down
+                0x00800087        0x2 disp.o
  .bss.consider_Up
-                0x0080006f        0x2 main.o
-                0x0080006f                consider_Up
- .bss.n_count   0x00800071        0x1 main.o
-                0x00800071                n_count
- .bss.cnt       0x00800072        0x2 main.o
-                0x00800072                cnt
+                0x00800089        0x2 disp.o
+ .bss.old_state.1748
+                0x0080008b        0x1 main.o
+ .bss.cnt       0x0080008c        0x2 main.o
  *(COMMON)
- COMMON         0x00800074        0x4 main.o
-                0x00800074                R
-                0x00800078                PROVIDE (__bss_end, .)
-                0x0000077a                __data_load_start = LOADADDR (.data)
-                0x00000786                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080008e        0x5 disp.o
+                0x0080008e                R
+                0x00800092                update
+                0x00800093                PROVIDE (__bss_end, .)
+                0x000007a4                __data_load_start = LOADADDR (.data)
+                0x000007c0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800078        0x0
+.noinit         0x00800093        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800078                _end = .
+                0x00800093                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -469,8 +488,9 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 main.o
+ .comment       0x00000000       0x30 disp.o
                                  0x31 (size before relaxing)
+ .comment       0x00000030       0x31 main.o
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x3c
@@ -492,42 +512,51 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x58
+.debug_aranges  0x00000000       0x98
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x58 main.o
+                0x00000000       0x60 disp.o
+ .debug_aranges
+                0x00000060       0x38 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x95f
+.debug_info     0x00000000      0xb2d
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x48c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o
- .debug_info    0x0000048c      0x4d3 main.o
+ .debug_info    0x0000048c      0x3a3 disp.o
+ .debug_info    0x0000082f      0x2fe main.o
 
-.debug_abbrev   0x00000000      0x65f
+.debug_abbrev   0x00000000      0x7e2
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x44e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o
- .debug_abbrev  0x0000044e      0x211 main.o
+ .debug_abbrev  0x0000044e      0x1ed disp.o
+ .debug_abbrev  0x0000063b      0x1a7 main.o
 
-.debug_line     0x00000000      0x7b2
+.debug_line     0x00000000      0x919
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x10a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o
- .debug_line    0x0000010a      0x6a8 main.o
+ .debug_line    0x0000010a      0x519 disp.o
+ .debug_line    0x00000623      0x2f6 main.o
 
-.debug_frame    0x00000000      0x108
+.debug_frame    0x00000000      0x18c
  *(.debug_frame)
- .debug_frame   0x00000000      0x108 main.o
+ .debug_frame   0x00000000       0xfc disp.o
+ .debug_frame   0x000000fc       0x90 main.o
 
-.debug_str      0x00000000      0x3dd
+.debug_str      0x00000000      0x42f
  *(.debug_str)
  .debug_str     0x00000000      0x17a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega8a/avr4/crtatmega8a.o
- .debug_str     0x0000017a      0x263 main.o
-                                0x297 (size before relaxing)
+ .debug_str     0x0000017a      0x251 disp.o
+                                0x285 (size before relaxing)
+ .debug_str     0x000003cb       0x64 main.o
+                                0x281 (size before relaxing)
 
-.debug_loc      0x00000000      0x98f
+.debug_loc      0x00000000      0x800
  *(.debug_loc)
- .debug_loc     0x00000000      0x98f main.o
+ .debug_loc     0x00000000      0x698 disp.o
+ .debug_loc     0x00000698      0x168 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -547,9 +576,10 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x48
+.debug_ranges   0x00000000       0x78
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x48 main.o
+ .debug_ranges  0x00000000       0x50 disp.o
+ .debug_ranges  0x00000050       0x28 main.o
 
 .debug_macro
  *(.debug_macro)
